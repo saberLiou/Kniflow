@@ -22,12 +22,12 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $post = Post::create($request->all())->refresh();
-        return response($post, Response::HTTP_CREATED);
+        return json_response($post, Response::HTTP_CREATED);
     }
 
     /**
@@ -57,10 +57,11 @@ class PostController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return json_response(null, Response::HTTP_NO_CONTENT);
     }
 }

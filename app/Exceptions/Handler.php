@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -36,5 +40,38 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        if ($request->wantsJson()) {
+            switch (get_class($e)) {
+                case ModelNotFoundException::class:
+                    return json_response(
+                        "Cannot find the resource.",
+                        Response::HTTP_NOT_FOUND
+                    );
+                case NotFoundHttpException::class:
+                    return json_response(
+                        "Unavailable route.",
+                        Response::HTTP_NOT_FOUND
+                    );
+                case MethodNotAllowedHttpException::class:
+                    return json_response(
+                        $e->getMessage(),
+                        Response::HTTP_METHOD_NOT_ALLOWED
+                    );
+            }
+        }
+        return parent::render($request, $e);
     }
 }

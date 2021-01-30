@@ -11,11 +11,11 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        return json_response(Post::get(), Response::HTTP_OK);
     }
 
     /**
@@ -34,11 +34,11 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Post $post)
     {
-        //
+        return json_response($post, Response::HTTP_OK);
     }
 
     /**
@@ -46,11 +46,12 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->all());
+        return json_response($post, Response::HTTP_OK);
     }
 
     /**

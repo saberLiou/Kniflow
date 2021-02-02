@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +16,13 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->index()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('category_id')->index()->nullable();
-            $table->string('slug')->unique();
-            $table->string('title');
-            $table->longText('content');
-            $table->tinyInteger('status')->default(1);
-            $table->timestamp('published_at');
+            $table->foreignId(Post::USER_ID)->index()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger(Post::CATEGORY_ID)->index()->nullable();
+            $table->string(Post::SLUG)->unique();
+            $table->string(Post::TITLE);
+            $table->longText(Post::CONTENT);
+            $table->tinyInteger(Post::STATUS)->default(1);
+            $table->timestamp(Post::PUBLISHED_AT);
             $table->timestamps();
         });
     }

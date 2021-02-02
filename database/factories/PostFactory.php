@@ -23,10 +23,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::all()->random()->id,
-            'title' => $this->faker->sentence,
-            'content' => $this->faker->text(1000),
-            'published_at' => $this->faker->datetime
+            Post::USER_ID => User::all()->random()->id,
+            Post::TITLE => $this->faker->sentence,
+            Post::CONTENT => $this->faker->text(1000),
+            Post::PUBLISHED_AT => $this->faker->datetime
         ];
     }
 }

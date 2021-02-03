@@ -3,18 +3,17 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -24,11 +23,9 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            Post::USER_ID => User::all()->random()->id,
-            Post::CATEGORY_ID => Category::all()->random()->id,
-            Post::TITLE => $this->faker->sentence,
-            Post::CONTENT => $this->faker->text(1000),
-            Post::PUBLISHED_AT => $this->faker->datetime
+            Category::USER_ID => User::all()->random()->id,
+            Category::NAME => $this->faker->sentence,
+            Category::SORT => $this->faker->numberBetween(1, 6),
         ];
     }
 }

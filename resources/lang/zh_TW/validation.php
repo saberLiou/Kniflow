@@ -180,5 +180,6 @@ return [
         'category_id'           => '分類ID',
         'status'                => '狀態',
         'published_at'          => '發佈時間',
+        'sort'                  => '排序',
     ],
 ];

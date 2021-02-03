@@ -62,8 +62,18 @@ class PostController extends Controller
         if ($validator->fails()) {
             return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        $post = Post::create($request->all())->refresh();
-        return json_response($post, Response::HTTP_CREATED);
+
+        return json_response(
+            Post::create($request->only([
+                Post::USER_ID,
+                Post::CATEGORY_ID,
+                Post::TITLE,
+                Post::CONTENT,
+                Post::STATUS,
+                Post::PUBLISHED_AT,
+            ]))->refresh(),
+            Response::HTTP_CREATED
+        );
     }
 
     /**
@@ -87,7 +97,6 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
-            Post::USER_ID => "integer",
             Post::CATEGORY_ID => "nullable|integer",
             Post::TITLE => "string|max:255",
             Post::STATUS => "integer",
@@ -97,7 +106,15 @@ class PostController extends Controller
             return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $post->update($request->all());
+        $post->update($request->replace([
+            Post::STATUS => (int) $request->status,
+        ])->only([
+            Post::CATEGORY_ID,
+            Post::TITLE,
+            Post::CONTENT,
+            Post::STATUS,
+            Post::PUBLISHED_AT,
+        ]));
         return json_response($post, Response::HTTP_OK);
     }
 

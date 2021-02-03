@@ -16,8 +16,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(Post::USER_ID)->index()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger(Post::CATEGORY_ID)->index()->nullable();
+            $table->foreignId(Post::USER_ID)->index()->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreignId(Post::CATEGORY_ID)->index()->nullable()->constrained()->onUpdate('CASCADE')->onDelete('SET NULL');
             $table->string(Post::SLUG)->unique();
             $table->string(Post::TITLE);
             $table->longText(Post::CONTENT);

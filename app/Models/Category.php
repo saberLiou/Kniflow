@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class Category extends Model
 {
     use HasFactory;
     use Sluggable;
@@ -14,12 +14,9 @@ class Post extends Model
     /* Field names in the database. */
     const ID = "id";
     const USER_ID = "user_id";
-    const CATEGORY_ID = "category_id";
     const SLUG = "slug";
-    const TITLE = "title";
-    const CONTENT = "content";
-    const STATUS = "status";
-    const PUBLISHED_AT = "published_at";
+    const NAME = "name";
+    const SORT = "sort";
     const CREATED_AT = "created_at";
     const UPDATED_AT = "updated_at";
 
@@ -30,11 +27,8 @@ class Post extends Model
      */
     protected $fillable = [
         self::USER_ID,
-        self::CATEGORY_ID,
-        self::TITLE,
-        self::CONTENT,
-        self::STATUS,
-        self::PUBLISHED_AT,
+        self::NAME,
+        self::SORT,
     ];
 
     /**
@@ -46,7 +40,7 @@ class Post extends Model
     {
         return [
             self::SLUG => [
-                'source' => self::TITLE,
+                'source' => self::NAME,
                 'onUpdate' => true,
             ]
         ];

@@ -11,6 +11,9 @@ class Post extends Model
     use HasFactory;
     use Sluggable;
 
+    /* Table name in the database. */
+    const TABLE = "posts";
+
     /* Field names in the database. */
     const ID = "id";
     const USER_ID = "user_id";
@@ -22,6 +25,10 @@ class Post extends Model
     const PUBLISHED_AT = "published_at";
     const CREATED_AT = "created_at";
     const UPDATED_AT = "updated_at";
+
+    /* Dynamic Property names for relationships. */
+    const USER = "user";
+    const CATEGORY = "category";
 
     /**
      * The attributes that are mass assignable.
@@ -60,5 +67,25 @@ class Post extends Model
     public function getRouteKeyName()
     {
         return self::SLUG;
+    }
+
+    /**
+     * Get the user that owns the post.
+     *
+     * @return User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the category that owns the post.
+     *
+     * @return Category
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

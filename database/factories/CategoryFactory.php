@@ -24,7 +24,7 @@ class CategoryFactory extends Factory
     {
         return [
             Category::USER_ID => User::all()->random()->id,
-            Category::NAME => $this->faker->sentence,
+            Category::NAME => $this->faker->word,
             Category::SORT => $this->faker->numberBetween(1, 6),
         ];
     }

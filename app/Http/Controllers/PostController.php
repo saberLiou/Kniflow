@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostResource;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -21,7 +24,7 @@ class PostController extends Controller
         $fullUrl = $request->fullUrl();
         if (Cache::has($fullUrl)) return Cache::get($fullUrl);
 
-        $query = Post::query()
+        $query = Post::query()->with('category')
             ->where(Post::TITLE, "LIKE", "%$request->q%")
             ->orWhere(Post::CONTENT, "LIKE", "%$request->q%");
 
@@ -39,7 +42,7 @@ class PostController extends Controller
         $posts = $query->paginate((int) $request->limit ?? 10)->appends($request->query());
 
         return Cache::remember($fullUrl, 60, function () use ($posts) {
-            return json_response($posts, Response::HTTP_OK);
+            return new PostCollection($posts);
         });
     }
 
@@ -53,17 +56,17 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             Post::USER_ID => "required|integer",
-            Post::CATEGORY_ID => "nullable|integer",
+            Post::CATEGORY_ID => "nullable|integer|exists:".Category::TABLE.",id",
             Post::TITLE => "required|string|max:255",
             Post::CONTENT => "required",
             Post::STATUS => "integer",
             Post::PUBLISHED_AT => "required|date",
         ]);
         if ($validator->fails()) {
-            return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return json_response(
+        return new PostResource(
             Post::create($request->only([
                 Post::USER_ID,
                 Post::CATEGORY_ID,
@@ -84,7 +87,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return json_response($post, Response::HTTP_OK);
+        return new PostResource($post);
     }
 
     /**
@@ -97,16 +100,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
-            Post::CATEGORY_ID => "nullable|integer",
+            Post::CATEGORY_ID => "nullable|integer|exists:".Category::TABLE.",id",
             Post::TITLE => "string|max:255",
             Post::STATUS => "integer",
             Post::PUBLISHED_AT => "date",
         ]);
         if ($validator->fails()) {
-            return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $post->update($request->replace([
+        $post->update($request->merge([
             Post::STATUS => (int) $request->status,
         ])->only([
             Post::CATEGORY_ID,
@@ -115,7 +118,7 @@ class PostController extends Controller
             Post::STATUS,
             Post::PUBLISHED_AT,
         ]));
-        return json_response($post, Response::HTTP_OK);
+        return new PostResource($post);
     }
 
     /**
@@ -126,7 +129,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // TODO: idempotent response for DELETE.
+        $deletedPost = $post;
         $post->delete();
-        return json_response(null, Response::HTTP_NO_CONTENT);
+        return new PostResource($deletedPost);
     }
 }

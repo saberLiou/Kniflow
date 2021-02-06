@@ -14,7 +14,7 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create(Category::TABLE, function (Blueprint $table) {
             $table->id();
             $table->foreignId(Category::USER_ID)->index()->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string(Category::SLUG)->unique();
@@ -31,6 +31,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists(Category::TABLE);
     }
 }

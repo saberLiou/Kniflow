@@ -14,7 +14,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create(Post::TABLE, function (Blueprint $table) {
             $table->id();
             $table->foreignId(Post::USER_ID)->index()->constrained()->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreignId(Post::CATEGORY_ID)->index()->nullable()->constrained()->onUpdate('CASCADE')->onDelete('SET NULL');
@@ -34,6 +34,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists(Post::TABLE);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return json_response(Category::all(), Response::HTTP_OK);
+        return new CategoryCollection(Category::all());
     }
 
     /**
@@ -33,10 +35,10 @@ class CategoryController extends Controller
             Category::SORT => "integer",
         ]);
         if ($validator->fails()) {
-            return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return json_response(
+        return new CategoryResource(
             Category::create($request->only([
                 Category::USER_ID,
                 Category::NAME,
@@ -54,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return json_response($category, Response::HTTP_OK);
+        return new CategoryResource($category);
     }
 
     /**
@@ -71,16 +73,16 @@ class CategoryController extends Controller
             Category::SORT => "integer",
         ]);
         if ($validator->fails()) {
-            return json_response($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $category->update($request->replace([
+        $category->update($request->merge([
             Category::SORT => (int) $request->sort,
         ])->only([
             Category::NAME,
             Category::SORT,
         ]));
-        return json_response($category, Response::HTTP_OK);
+        return new CategoryResource($category);
     }
 
     /**
@@ -91,7 +93,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        // TODO: idempotent response for DELETE.
+        $deletedCategory = $category;
         $category->delete();
-        return json_response(null, Response::HTTP_NO_CONTENT);
+        return new CategoryResource($deletedCategory);
     }
 }

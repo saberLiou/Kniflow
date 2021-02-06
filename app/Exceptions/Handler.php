@@ -56,18 +56,18 @@ class Handler extends ExceptionHandler
         if ($request->wantsJson()) {
             switch (get_class($e)) {
                 case ModelNotFoundException::class:
-                    return json_response(
-                        "Cannot find the resource.",
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_NOT_FOUND] => "Cannot find the resource."],
                         Response::HTTP_NOT_FOUND
                     );
                 case NotFoundHttpException::class:
-                    return json_response(
-                        "Unavailable route.",
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_NOT_FOUND] => "Unavailable route."],
                         Response::HTTP_NOT_FOUND
                     );
                 case MethodNotAllowedHttpException::class:
-                    return json_response(
-                        $e->getMessage(),
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_METHOD_NOT_ALLOWED] => $e->getMessage()],
                         Response::HTTP_METHOD_NOT_ALLOWED
                     );
             }

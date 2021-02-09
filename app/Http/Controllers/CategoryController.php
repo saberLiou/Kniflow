@@ -30,9 +30,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            Category::USER_ID => "required|integer",
-            Category::NAME => "required|string|max:255",
-            Category::SORT => "integer",
+            Category::USER_ID => 'required|integer',
+            Category::NAME => 'required|string|max:255',
+            Category::SORT => 'integer',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -69,8 +69,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(), [
-            Category::NAME => "string|max:255",
-            Category::SORT => "integer",
+            Category::NAME => 'string|max:255',
+            Category::SORT => 'integer',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);

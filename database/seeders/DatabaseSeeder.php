@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use App\Models\Category;
+// use App\Models\PersonalAccessToken;
 // use App\Models\Post;
 // use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,11 +23,13 @@ class DatabaseSeeder extends Seeder
 
         // Post::truncate();
         // Category::truncate();
+        // PersonalAccessToken::truncate();
         // User::truncate();
 
         /* Merely use `php artisan migrate:refresh/fresh --seed`. */
         $this->call([
             UserSeeder::class,
+            PersonalAccessTokenSeeder::class,
             CategorySeeder::class,
             PostSeeder::class,
         ]);

@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 if (!function_exists('success_response')) {
     /**
-     * Format a success json response, reference:  https://jsonapi.org/.
+     * Format a success json response, reference: https://jsonapi.org/.
      *
      * @param array $data
      * @param int $status
@@ -20,9 +20,29 @@ if (!function_exists('success_response')) {
     }
 }
 
+if (!function_exists('format_resource_object')) {
+    /**
+     * Format a resource object in a success json response, reference: https://jsonapi.org/format/#document-resource-objects.
+     *
+     * @param int $id
+     * @param string $type
+     * @param array $attributes
+     * @param array $relationships
+     */
+    function format_resource_object(int $id, string $type, array $attributes, array $relationships)
+    {
+        return [
+            'id' => $id,
+            'type' => $type,
+            'attributes' => $attributes,
+            'relationships' => $relationships,
+        ];
+    }
+}
+
 if (!function_exists('error_response')) {
     /**
-     * Format an error json response, reference:  https://jsonapi.org/.
+     * Format an error json response, reference: https://jsonapi.org/.
      *
      * @param array $errors
      * @param int $status
@@ -43,7 +63,7 @@ if (!function_exists('error_response')) {
             ];
             switch ($status) {
                 case Response::HTTP_UNPROCESSABLE_ENTITY:
-                    $errorObject['source']['pointer'] = "/data/$field";
+                    $errorObject['source']['pointer'] = "/data/attributes/$field";
                     $errorObject['title'] = "Invalid Attribute";
                     $errorObject['detail'] = $messages[0];
                     break;

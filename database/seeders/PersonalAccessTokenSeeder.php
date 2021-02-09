@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class PersonalAccessTokenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         if (env('APP_ENV') != 'production') {
-            User::factory(5)->create();
         }
     }
 }

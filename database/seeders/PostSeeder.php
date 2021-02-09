@@ -14,6 +14,8 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory(1000)->create();
+        if (env('APP_ENV') != 'production') {
+            Post::factory(1000)->create();
+        }
     }
 }

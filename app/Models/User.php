@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormatDateTime;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,25 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use FormatDateTime, HasApiTokens, HasFactory, Notifiable;
+
+    /* Table name in the database. */
+    const TABLE = "users";
+
+    /* Field names in the database. */
+    const ID = "id";
+    const NAME = "name";
+    const EMAIL = "email";
+    const EMAIL_VERIFIED_AT = "email_verified_at";
+    const PASSWORD = "password";
+    const REMEMBER_TOKEN = "remember_token";
+    const CREATED_AT = "created_at";
+    const UPDATED_AT = "updated_at";
+
+    /* Dynamic Property names for relationships. */
+    const TOKENS = "tokens";
+    const CATEGORIES = "categories";
+    const POSTS = "posts";
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +37,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        self::NAME,
+        self::EMAIL,
+        self::PASSWORD,
     ];
 
     /**
@@ -29,16 +48,27 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        self::PASSWORD,
+        self::REMEMBER_TOKEN,
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the categories for the user.
      *
-     * @var array
+     * @return Illuminate\Database\Eloquent\Collection
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
+     * Get the posts for the user.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

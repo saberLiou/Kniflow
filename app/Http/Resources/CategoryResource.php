@@ -14,21 +14,21 @@ class CategoryResource extends BaseResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'type' => Category::TABLE,
-            'attributes' => array_remove_pairs(parent::toArray($request), [
+        return format_resource_object(
+            $this->id,
+            Category::TABLE,
+            array_remove_pairs(parent::toArray($request), [
                 Category::ID,
                 Category::USER_ID,
             ]),
-            'relationships' => [
+            [
                 Category::USER => (is_null($this->user)) ? null : [
                     'data' => $this->user,
                 ],
                 Category::POSTS => ($this->posts->isEmpty()) ? [] : [
                     'data' => $this->posts,
                 ],
-            ],
-        ];
+            ]
+        );
     }
 }

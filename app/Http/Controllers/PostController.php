@@ -25,18 +25,18 @@ class PostController extends Controller
         if (Cache::has($fullUrl)) return Cache::get($fullUrl);
 
         $query = Post::query()->with('category')
-            ->where(Post::TITLE, "LIKE", "%$request->q%")
-            ->orWhere(Post::CONTENT, "LIKE", "%$request->q%");
+            ->where(Post::TITLE, 'LIKE', "%$request->q%")
+            ->orWhere(Post::CONTENT, 'LIKE', "%$request->q%");
 
         if (isset($request->sorts)) {
             foreach (explode(',', $request->sorts) as $sort) {
                 list($field, $order) = explode(':', $sort);
-                if (in_array($order, ["asc", "desc"])) {
+                if (in_array($order, ['asc', 'desc'])) {
                     $query->orderBy($field, $order);
                 }
             }
         } else {
-            $query->orderBy(Post::PUBLISHED_AT, "DESC");
+            $query->orderBy(Post::PUBLISHED_AT, 'DESC');
         }
 
         $posts = $query->paginate((int) $request->limit ?? 10)->appends($request->query());
@@ -55,12 +55,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            Post::USER_ID => "required|integer",
-            Post::CATEGORY_ID => "nullable|integer|exists:".Category::TABLE.",id",
-            Post::TITLE => "required|string|max:255",
-            Post::CONTENT => "required",
-            Post::STATUS => "integer",
-            Post::PUBLISHED_AT => "required|date",
+            Post::USER_ID => 'required|integer',
+            Post::CATEGORY_ID => 'nullable|integer|exists:'.Category::TABLE.',id',
+            Post::TITLE => 'required|string|max:255',
+            Post::CONTENT => 'required',
+            Post::STATUS => 'integer',
+            Post::PUBLISHED_AT => 'required|date',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -100,10 +100,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
-            Post::CATEGORY_ID => "nullable|integer|exists:".Category::TABLE.",id",
-            Post::TITLE => "string|max:255",
-            Post::STATUS => "integer",
-            Post::PUBLISHED_AT => "date",
+            Post::CATEGORY_ID => 'nullable|integer|exists:'.Category::TABLE.',id',
+            Post::TITLE => 'string|max:255',
+            Post::STATUS => 'integer',
+            Post::PUBLISHED_AT => 'date',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);

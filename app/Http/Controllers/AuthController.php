@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,17 +30,18 @@ class AuthController extends Controller
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // TODO: database transactions.
-        $user = User::create($request->merge([
-            User::PASSWORD => Hash::make($request->password),
-        ])->only([
-            User::NAME,
-            User::EMAIL,
-            User::PASSWORD,
-        ]))->refresh();
+        return DB::transaction(function() use ($request) {
+            $user = User::create($request->merge([
+                User::PASSWORD => Hash::make($request->password),
+            ])->only([
+                User::NAME,
+                User::EMAIL,
+                User::PASSWORD,
+            ]))->refresh();
 
-        $user->token = $user->createToken($request->device_name)->plainTextToken;
+            $user->token = $user->createToken($request->device_name)->plainTextToken;
 
-        return new UserResource($user);
+            return new UserResource($user);
+        });
     }
 }

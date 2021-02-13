@@ -70,6 +70,11 @@ class Handler extends ExceptionHandler
                         [Response::$statusTexts[Response::HTTP_METHOD_NOT_ALLOWED] => $e->getMessage()],
                         Response::HTTP_METHOD_NOT_ALLOWED
                     );
+                default:
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_INTERNAL_SERVER_ERROR] => $e->getMessage()],
+                        Response::HTTP_INTERNAL_SERVER_ERROR
+                    );
             }
         }
         return parent::render($request, $e);

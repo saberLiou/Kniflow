@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -69,6 +70,11 @@ class Handler extends ExceptionHandler
                     return error_response(
                         [Response::$statusTexts[Response::HTTP_METHOD_NOT_ALLOWED] => $e->getMessage()],
                         Response::HTTP_METHOD_NOT_ALLOWED
+                    );
+                case ThrottleRequestsException::class:
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_TOO_MANY_REQUESTS] => $e->getMessage()],
+                        Response::HTTP_TOO_MANY_REQUESTS
                     );
                 default:
                     return error_response(

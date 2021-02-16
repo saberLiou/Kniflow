@@ -22,14 +22,15 @@ if (!function_exists('success_response')) {
 
 if (!function_exists('format_resource_object')) {
     /**
-     * Format a resource object in a success json response, reference: https://jsonapi.org/format/#document-resource-objects.
+     * Format a resource object in a success json response,
+     * reference: https://jsonapi.org/format/#document-resource-objects.
      *
      * @param int $id
      * @param string $type
      * @param array $attributes
      * @param array $relationships
      */
-    function format_resource_object(int $id, string $type, array $attributes, array $relationships)
+    function format_resource_object(int $id, string $type, array $attributes, array $relationships = [])
     {
         return [
             'id' => $id,
@@ -80,6 +81,20 @@ if (!function_exists('error_response')) {
         ], $status);
 
         return $response;
+    }
+}
+
+if (!function_exists('endpoint')) {
+    /**
+     * Generate the endpoint of a URL by a named route.
+     *
+     * @param string $name
+     * @param array $parameters
+     * @return string
+     */
+    function endpoint(string $name, array $parameters = [])
+    {
+        return route($name, $parameters, false);
     }
 }
 

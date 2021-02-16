@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,13 +25,13 @@ class AuthController extends Controller
             User::NAME => 'required|string|max:255',
             User::EMAIL => 'required|string|email|max:255|unique:' . User::TABLE,
             User::PASSWORD => 'required|string|min:8',
-            'device_name' => 'required|string|max:255',
+            PersonalAccessToken::DEVICE_NAME => 'required|string|max:255',
         ]);
         if ($validator->fails()) {
             return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return DB::transaction(function() use ($request) {
+        return DB::transaction(function () use ($request) {
             $user = User::create($request->merge([
                 User::PASSWORD => Hash::make($request->password),
             ])->only([
@@ -41,7 +42,7 @@ class AuthController extends Controller
 
             $user->token = $user->createToken($request->device_name)->plainTextToken;
 
-            return new UserResource($user);
+            return new UserResource($user, Response::HTTP_CREATED);
         });
     }
 }

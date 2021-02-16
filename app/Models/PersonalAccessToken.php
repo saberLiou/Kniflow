@@ -24,6 +24,10 @@ class PersonalAccessToken extends SanctumPersonalAccessToken
     const CREATED_AT = "created_at";
     const UPDATED_AT = "updated_at";
 
+    /* Field names in query parameters from a request. */
+    const DEVICE_NAME = 'device_name';
+    const TOKEN_NAME = 'token_name';
+
     /* Dynamic Property names for relationships. */
     const USER = "user";
 

@@ -22,7 +22,9 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $fullUrl = $request->fullUrl();
-        if (Cache::has($fullUrl)) return Cache::get($fullUrl);
+        if (Cache::has($fullUrl)) {
+            return Cache::get($fullUrl);
+        }
 
         $query = Post::query()->with('category')
             ->where(Post::TITLE, 'LIKE', "%$request->q%")

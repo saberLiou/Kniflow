@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
@@ -11,26 +12,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class AuthController.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class AuthController extends Controller
 {
     /**
      * Register a user with a personal access token.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\Auth\RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            User::NAME => 'required|string|max:255',
-            User::EMAIL => 'required|string|email|max:255|unique:' . User::TABLE,
-            User::PASSWORD => 'required|string|min:8',
-            PersonalAccessToken::DEVICE_NAME => 'required|string|max:255',
-        ]);
-        if ($validator->fails()) {
-            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
         return DB::transaction(function () use ($request) {
             $user = User::create($request->merge([
                 User::PASSWORD => Hash::make($request->password),

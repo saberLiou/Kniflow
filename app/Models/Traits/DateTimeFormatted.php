@@ -2,7 +2,7 @@
 
 namespace App\Models\Traits;
 
-trait FormatDateTime
+trait DateTimeFormatted
 {
     /**
      * Prepare a datetime with correct timezone for array / JSON serialization.

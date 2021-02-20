@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Traits\FormatDateTime;
+use App\Models\Traits\DateTimeFormatted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use FormatDateTime, HasFactory, Sluggable;
+    use DateTimeFormatted, HasFactory, Sluggable;
 
     /* Table name in the database. */
     const TABLE = "posts";

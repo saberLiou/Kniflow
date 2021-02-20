@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\FormatDateTime;
+use App\Models\Traits\DateTimeFormatted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 
 class PersonalAccessToken extends SanctumPersonalAccessToken
 {
-    use FormatDateTime, HasFactory;
+    use DateTimeFormatted, HasFactory;
 
     /* Table name in the database. */
     const TABLE = "personal_access_tokens";

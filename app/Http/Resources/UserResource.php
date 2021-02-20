@@ -4,6 +4,11 @@ namespace App\Http\Resources;
 
 use App\Models\User;
 
+/**
+ * Class UserResource.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class UserResource extends BaseResource
 {
     /**
@@ -17,7 +22,9 @@ class UserResource extends BaseResource
         return format_resource_object(
             $this->id,
             User::TABLE,
-            array_remove_pairs(parent::toArray($request), []),
+            array_remove_pairs(parent::toArray($request), [
+                User::ID,
+            ]),
             [
                 User::TOKENS => ($this->tokens->isEmpty()) ? [] : [
                     'data' => $this->tokens,

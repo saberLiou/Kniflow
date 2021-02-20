@@ -181,5 +181,6 @@ return [
         'status'                => '狀態',
         'published_at'          => '發佈時間',
         'sort'                  => '排序',
+        'device_name'           => '手機型號',
     ],
 ];

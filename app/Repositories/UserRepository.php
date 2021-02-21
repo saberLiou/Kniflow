@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,7 @@ class UserRepository extends BaseRepository
      */
     public function __construct(User $user)
     {
-        parent::__construct(User::TABLE);
+        parent::__construct($user);
         $this->user = $user;
     }
 
@@ -44,6 +45,19 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * Create a personal access token into the database for the user,
+     * and return the created personal access token string.
+     *
+     * @param User $user
+     * @param string $deviceName
+     * @return string
+     */
+    public function createPersonalAccessTokenForUser(User $user, string $deviceName)
+    {
+        return $user->createToken($deviceName)->plainTextToken;
+    }
+
+    /**
      * Return the user instance with fresh attributes from the database.
      *
      * @param User $user
@@ -55,15 +69,28 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * Create a personal access token into the database for the user,
-     * and return the created personal access token string.
+     * Get a user instance by his/her email,
+     * return null if not found.
+     *
+     * @param string $email
+     * @return User|null
+     */
+    public function getUserByEmail(string $email)
+    {
+        return $this->toModel(
+            $this->query->where(User::EMAIL, $email)->first()
+        );
+    }
+
+    /**
+     * Delete all the personal access tokens by their name for the user.
      *
      * @param User $user
-     * @param string $tokenName
-     * @return string
+     * @param string $deviceName
+     * @return void
      */
-    public function createPersonalAccessTokenForUser(User $user, string $tokenName)
+    public function deletePersonalAccessTokensByNameForUser(User $user, string $deviceName)
     {
-        return $user->createToken($tokenName)->plainTextToken;
+        $user->tokens()->where(PersonalAccessToken::NAME, $deviceName)->delete();
     }
 }

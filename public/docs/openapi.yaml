@@ -9,7 +9,7 @@ servers:
 paths:
     /api/register:
         post:
-            summary: 'Register a user with a personal access token.'
+            summary: 'Register a user with a personal access token for the device.'
             description: ''
             parameters:
                 -
@@ -35,11 +35,11 @@ paths:
                                 type: object
                                 example:
                                     jsonapi: { version: '2021.02' }
-                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: Pixel, abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } }
+                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } }
                                     links: { self: 'http://kniflow.test/api/register' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
-                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: Pixel, abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } } }
+                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } } }
                                     links: { type: object, example: { self: 'http://kniflow.test/api/register' } }
             tags:
                 - '01. Authentication'
@@ -64,14 +64,130 @@ paths:
                                     example: '12345678'
                                 device_name:
                                     type: string
-                                    description: 'The device of the user.'
-                                    example: Pixel
+                                    description: 'The device name of the user.'
+                                    example: 'saberLiou''s Pixel'
                             required:
                                 - name
                                 - email
                                 - password
                                 - device_name
             security: []
+    /api/login:
+        post:
+            summary: 'Login a user with a new personal access token for the device.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/x-www-form-urlencoded
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, when login succeeded.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } }
+                                    links: { self: 'http://kniflow.test/api/login' }
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } } }
+                                    links: { type: object, example: { self: 'http://kniflow.test/api/login' } }
+            tags:
+                - '01. Authentication'
+            requestBody:
+                required: true
+                content:
+                    application/x-www-form-urlencoded:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'The email of the user. value 必須是有效的 E-mail。.'
+                                    example: saberliou@gmail.com
+                                password:
+                                    type: string
+                                    description: 'The password of the user.'
+                                    example: '12345678'
+                                device_name:
+                                    type: string
+                                    description: 'The device name of the user.'
+                                    example: 'saberLiou''s Pixel'
+                            required:
+                                - email
+                                - password
+                                - device_name
+            security: []
+    /api/logout:
+        post:
+            summary: 'Logout a user with all the personal access tokens being revoked on the device.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {personal-access-token}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/x-www-form-urlencoded
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, when logout succeeded.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:02', updated_at: '1970-01-01 00:00:02' }, relationships: { tokens: [], categories: [], posts: [] } }
+                                    links: { self: 'http://kniflow.test/api/logout' }
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:02', updated_at: '1970-01-01 00:00:02' }, relationships: { tokens: [], categories: [], posts: [] } } }
+                                    links: { type: object, example: { self: 'http://kniflow.test/api/logout' } }
+            tags:
+                - '01. Authentication'
+            requestBody:
+                required: true
+                content:
+                    application/x-www-form-urlencoded:
+                        schema:
+                            type: object
+                            properties:
+                                device_name:
+                                    type: string
+                                    description: 'The device name of the user.'
+                                    example: 'saberLiou''s Pixel'
+                            required:
+                                - device_name
 components:
     securitySchemes:
         default:

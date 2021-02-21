@@ -8,11 +8,11 @@ use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class RegisterRequest.
+ * Class LoginRequest.
  *
  * @author saberLiou <saberliou@gmail.com>
  */
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     use ValidatorFailed;
 
@@ -34,8 +34,7 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            User::NAME => 'required|string|max:255',
-            User::EMAIL => 'required|string|email|max:255|unique:'.User::TABLE,
+            User::EMAIL => 'required|string|email|max:255',
             User::PASSWORD => 'required|string|min:8',
             PersonalAccessToken::DEVICE_NAME => 'required|string|max:255',
         ];
@@ -49,10 +48,6 @@ class RegisterRequest extends FormRequest
     public function bodyParameters()
     {
         return [
-            User::NAME => [
-                'description' => 'The name of the user.',
-                'example' => config('scribe.example_values.name'),
-            ],
             User::EMAIL => [
                 'description' => 'The email of the user.',
                 'example' => config('scribe.example_values.email'),

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 class BaseRepository
 {
     /**
+     * The Model instance.
+     *
+     * @var Model
+     */
+    private $model;
+
+    /**
      * The Builder instance of the model.
      *
      * @var \Illuminate\Database\Query\Builder
@@ -21,10 +29,23 @@ class BaseRepository
     /**
      * Create a BaseRepository instance.
      *
-     * @param string $tableName
+     * @param Model $model
      */
-    public function __construct(string $tableName)
+    public function __construct(Model $model)
     {
-        $this->query = DB::table($tableName);
+        $this->model = $model;
+        $this->query = DB::table($model->getTable());
+    }
+
+    /**
+     * Convert the object queried from database by Builder into an Eloquent model,
+     * return null if not an object.
+     *
+     * @param object $object
+     * @return Model|null
+     */
+    protected function toModel($object)
+    {
+        return is_object($object) ? $this->model->forceFill((array) $object) : null;
     }
 }

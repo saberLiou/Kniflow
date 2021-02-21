@@ -9,15 +9,15 @@
             "name": "saberLiou",
             "email": "saberliou@gmail.com",
             "email_verified_at": null,
-            "created_at": "1970-01-01 00:00:00",
-            "updated_at": "1970-01-01 00:00:00",
+            "created_at": "1970-01-01 00:00:01",
+            "updated_at": "1970-01-01 00:00:01",
             "token": "{personal-access-token}"
         },
         "relationships": {
             "tokens": {
                 "data": [
                     {
-                        "id": 1,
+                        "id": 2,
                         "tokenable_type": "users",
                         "tokenable_id": 1,
                         "name": "saberLiou's Pixel",
@@ -25,8 +25,8 @@
                             "*"
                         ],
                         "last_used_at": null,
-                        "created_at": "1970-01-01 00:00:00",
-                        "updated_at": "1970-01-01 00:00:00"
+                        "created_at": "1970-01-01 00:00:01",
+                        "updated_at": "1970-01-01 00:00:01"
                     }
                 ]
             },
@@ -35,6 +35,6 @@
         }
     },
     "links": {
-        "self": "http://kniflow.test/api/register"
+        "self": "http://kniflow.test/api/login"
     }
 }

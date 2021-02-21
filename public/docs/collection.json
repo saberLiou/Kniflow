@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "221274ba-c7f5-4df4-9377-279462c5016b",
+        "_postman_id": "e57843fa-19d4-4481-935e-9b87b48bf044",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -21,7 +21,7 @@
             "description": "",
             "item": [
                 {
-                    "name": "Register a user with a personal access token.",
+                    "name": "Register a user with a personal access token for the device.",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -43,12 +43,73 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"name\": \"saberLiou\",\n    \"email\": \"saberliou@gmail.com\",\n    \"password\": \"12345678\",\n    \"device_name\": \"Pixel\"\n}"
+                            "raw": "{\n    \"name\": \"saberLiou\",\n    \"email\": \"saberliou@gmail.com\",\n    \"password\": \"12345678\",\n    \"device_name\": \"saberLiou's Pixel\"\n}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login a user with a new personal access token for the device.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/x-www-form-urlencoded"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"saberliou@gmail.com\",\n    \"password\": \"12345678\",\n    \"device_name\": \"saberLiou's Pixel\"\n}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout a user with all the personal access tokens being revoked on the device.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/x-www-form-urlencoded"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"device_name\": \"saberLiou's Pixel\"\n}"
+                        },
+                        "description": ""
                     },
                     "response": []
                 }

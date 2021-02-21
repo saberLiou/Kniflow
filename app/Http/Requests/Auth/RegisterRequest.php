@@ -35,9 +35,36 @@ class RegisterRequest extends FormRequest
     {
         return [
             User::NAME => 'required|string|max:255',
-            User::EMAIL => 'required|string|email|max:255|unique:' . User::TABLE,
+            User::EMAIL => 'required|string|email|max:255|unique:'.User::TABLE,
             User::PASSWORD => 'required|string|min:8',
             PersonalAccessToken::DEVICE_NAME => 'required|string|max:255',
+        ];
+    }
+
+    /**
+     * Body parammeters for Scribe to document.
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            User::NAME => [
+                'description' => 'The name of the user.',
+                'example' => config('scribe.example_values.name'),
+            ],
+            User::EMAIL => [
+                'description' => 'The email of the user.',
+                'example' => config('scribe.example_values.email'),
+            ],
+            User::PASSWORD => [
+                'description' => 'The password of the user.',
+                'example' => config('scribe.example_values.password'),
+            ],
+            PersonalAccessToken::DEVICE_NAME => [
+                'description' => 'The device of the user.',
+                'example' => 'Pixel',
+            ],
         ];
     }
 }

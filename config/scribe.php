@@ -33,7 +33,7 @@ return [
                 /*
                  * Match only routes whose paths match this pattern (use * as a wildcard to match any characters). Example: 'users/*'.
                  */
-                'prefixes' => ['*'],
+                'prefixes' => ['api/*'],
 
                 /*
                  * [Dingo router only] Match only routes registered under this version. Wildcards are not supported.
@@ -55,6 +55,8 @@ return [
              */
             'exclude' => [
                 // '/health', 'admin.*'
+                'categories.*',
+                'posts.*',
             ],
 
             /*
@@ -65,7 +67,7 @@ return [
                  * Additional headers to be added to the example requests
                  */
                 'headers' => [
-                    'Content-Type' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
                     'Accept' => 'application/json',
                 ],
 
@@ -178,13 +180,13 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
          * You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
          */
-        'default' => false,
+        'default' => true,
 
         /*
          * Where is the auth value meant to be sent in a request?
@@ -208,7 +210,7 @@ return [
          * Placeholder your users will see for the auth parameter in the example requests.
          * Set this to null if you want Scribe to use a random value as placeholder instead.
          */
-        'placeholder' => '{YOUR_AUTH_KEY}',
+        'placeholder' => '{personal-access-token}',
 
         /*
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
@@ -236,9 +238,9 @@ INTRO
      */
     'example_languages' => [
         'bash',
-        'javascript',
-        'php',
         'python',
+        'php',
+        'javascript',
     ],
 
     /*
@@ -259,7 +261,7 @@ INTRO
          * Manually override some generated content in the spec. Dot notation is supported.
          */
         'overrides' => [
-            // 'info.version' => '2.0.0',
+            'info.version' => '2021.02',
         ],
     ],
 
@@ -276,14 +278,14 @@ INTRO
          * Manually override some generated content in the spec. Dot notation is supported.
          */
         'overrides' => [
-            // 'info.version' => '2.0.0',
+            'info.version' => '2021.02',
         ],
     ],
 
     /*
      * Name for the group of endpoints which do not have a @group set.
      */
-    'default_group' => 'Endpoints',
+    'default_group' => 'Other Endpoints',
 
     /*
      * Custom logo path. This will be used as the value of the src attribute for the <img> tag,
@@ -295,7 +297,7 @@ INTRO
      * - 'logo' => 'img/logo.png' // for `laravel` type
      *
      */
-    'logo' => false,
+    'logo' => 'https://raw.githubusercontent.com/saberLiou/KniflowAndroidApp/master/kniflow.svg',
 
     /*
      * The router your API is using (Laravel or Dingo).
@@ -372,5 +374,15 @@ INTRO
      * For response calls, api resource responses and transformer responses, Scribe will try to start database transactions, so no changes are persisted to your database.
      * Tell Scribe which connections should be transacted here. If you only use the default db connection, you can leave this as is.
      */
-    'database_connections_to_transact' => [config('database.default')]
+    'database_connections_to_transact' => [config('database.default')],
+
+    /**
+     * Example values for creating each requests.
+     */
+    'example_values' => [
+        'name' => 'saberLiou',
+        'email' => 'saberliou@gmail.com',
+        'password' => '12345678',
+        'datetime' => '1970-01-01 00:00:00',
+    ],
 ];

@@ -20,6 +20,8 @@ class AuthTest extends TestCase
      */
     public function testRegister()
     {
+        $this->withoutExceptionHandling();
+
         // GIVEN
         $formData = [
             User::NAME => 'Guo-Xun Liu',

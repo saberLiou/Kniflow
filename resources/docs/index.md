@@ -14,7 +14,7 @@ includes:
 - "./errors.md"
 - "./append.md"
 
-logo: 
+logo: https://raw.githubusercontent.com/saberLiou/KniflowAndroidApp/master/kniflow.svg
 
 toc_footers:
 - <a href="./collection.json">View Postman collection</a>

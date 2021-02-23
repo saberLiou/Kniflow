@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "e57843fa-19d4-4481-935e-9b87b48bf044",
+        "_postman_id": "4cf31431-94a7-4c79-8df5-b0b9a4223171",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -33,11 +33,11 @@
                         "method": "POST",
                         "header": [
                             {
-                                "key": "Content-Type",
-                                "value": "application\/x-www-form-urlencoded"
+                                "key": "Accept",
+                                "value": "application\/json"
                             },
                             {
-                                "key": "Accept",
+                                "key": "Content-Type",
                                 "value": "application\/json"
                             }
                         ],
@@ -65,11 +65,11 @@
                         "method": "POST",
                         "header": [
                             {
-                                "key": "Content-Type",
-                                "value": "application\/x-www-form-urlencoded"
+                                "key": "Accept",
+                                "value": "application\/json"
                             },
                             {
-                                "key": "Accept",
+                                "key": "Content-Type",
                                 "value": "application\/json"
                             }
                         ],
@@ -97,11 +97,11 @@
                         "method": "POST",
                         "header": [
                             {
-                                "key": "Content-Type",
-                                "value": "application\/x-www-form-urlencoded"
+                                "key": "Accept",
+                                "value": "application\/json"
                             },
                             {
-                                "key": "Accept",
+                                "key": "Content-Type",
                                 "value": "application\/json"
                             }
                         ],

@@ -47,7 +47,7 @@
                             <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: February 21 2021</li>
+            <li>Last updated: February 23 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -67,7 +67,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://kniflow.test</code></pre><h1>Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>01. Authentication</h1>
 <h2>Register a user with a personal access token for the device.</h2>
@@ -76,8 +76,8 @@ You can switch the language used with the tabs at the top right (or from the nav
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://kniflow.test/api/register" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
     -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
     -d '{"name":"saberLiou","email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
 </code></pre>
 <pre><code class="language-python">import requests
@@ -91,8 +91,8 @@ payload = {
     "device_name": "saberLiou's Pixel"
 }
 headers = {
-  'Content-Type': 'application/x-www-form-urlencoded',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
 }
 
 response = requests.request('POST', url, headers=headers, json=payload)
@@ -103,8 +103,8 @@ $response = $client-&gt;post(
     'http://kniflow.test/api/register',
     [
         'headers' =&gt; [
-            'Content-Type' =&gt; 'application/x-www-form-urlencoded',
             'Accept' =&gt; 'application/json',
+            'Content-Type' =&gt; 'application/json',
         ],
         'json' =&gt; [
             'name' =&gt; 'saberLiou',
@@ -121,8 +121,8 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 };
 
 let body = {
@@ -180,6 +180,52 @@ fetch(url, {
         "self": "http:\/\/kniflow.test\/api\/register"
     }
 }</code></pre>
+<blockquote>
+<p>Example response (422, when any validation failed.):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/email",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/password",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/device_name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        }
+    ]
+}</code></pre>
 <div id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-register"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-register"></code></pre>
@@ -188,7 +234,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTapi-register"></code></pre>
 </div>
-<form id="form-POSTapi-register" data-method="POST" data-path="api/register" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/x-www-form-urlencoded","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-register', this);">
+<form id="form-POSTapi-register" data-method="POST" data-path="api/register" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-register', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-register" onclick="tryItOut('POSTapi-register');">Try it out ⚡</button>
@@ -228,8 +274,8 @@ The device name of the user.</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
     "http://kniflow.test/api/login" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
     -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
     -d '{"email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
 </code></pre>
 <pre><code class="language-python">import requests
@@ -242,8 +288,8 @@ payload = {
     "device_name": "saberLiou's Pixel"
 }
 headers = {
-  'Content-Type': 'application/x-www-form-urlencoded',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
 }
 
 response = requests.request('POST', url, headers=headers, json=payload)
@@ -254,8 +300,8 @@ $response = $client-&gt;post(
     'http://kniflow.test/api/login',
     [
         'headers' =&gt; [
-            'Content-Type' =&gt; 'application/x-www-form-urlencoded',
             'Accept' =&gt; 'application/json',
+            'Content-Type' =&gt; 'application/json',
         ],
         'json' =&gt; [
             'email' =&gt; 'saberliou@gmail.com',
@@ -271,8 +317,8 @@ print_r(json_decode((string) $body));</code></pre>
 );
 
 let headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 };
 
 let body = {
@@ -329,6 +375,43 @@ fetch(url, {
         "self": "http:\/\/kniflow.test\/api\/login"
     }
 }</code></pre>
+<blockquote>
+<p>Example response (422, when any validation failed.):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/email",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/password",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/device_name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        }
+    ]
+}</code></pre>
 <div id="execution-results-POSTapi-login" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-login"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-login"></code></pre>
@@ -337,7 +420,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTapi-login"></code></pre>
 </div>
-<form id="form-POSTapi-login" data-method="POST" data-path="api/login" data-authed="0" data-hasfiles="0" data-headers='{"Content-Type":"application\/x-www-form-urlencoded","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
+<form id="form-POSTapi-login" data-method="POST" data-path="api/login" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-login" onclick="tryItOut('POSTapi-login');">Try it out ⚡</button>
@@ -374,8 +457,8 @@ The device name of the user.</p>
 <pre><code class="language-bash">curl -X POST \
     "http://kniflow.test/api/logout" \
     -H "Authorization: Bearer {personal-access-token}" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
     -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
     -d '{"device_name":"saberLiou's Pixel"}'
 </code></pre>
 <pre><code class="language-python">import requests
@@ -387,8 +470,8 @@ payload = {
 }
 headers = {
   'Authorization': 'Bearer {personal-access-token}',
-  'Content-Type': 'application/x-www-form-urlencoded',
-  'Accept': 'application/json'
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
 }
 
 response = requests.request('POST', url, headers=headers, json=payload)
@@ -400,8 +483,8 @@ $response = $client-&gt;post(
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
-            'Content-Type' =&gt; 'application/x-www-form-urlencoded',
             'Accept' =&gt; 'application/json',
+            'Content-Type' =&gt; 'application/json',
         ],
         'json' =&gt; [
             'device_name' =&gt; 'saberLiou\'s Pixel',
@@ -416,8 +499,8 @@ print_r(json_decode((string) $body));</code></pre>
 
 let headers = {
     "Authorization": "Bearer {personal-access-token}",
-    "Content-Type": "application/x-www-form-urlencoded",
     "Accept": "application/json",
+    "Content-Type": "application/json",
 };
 
 let body = {
@@ -456,6 +539,25 @@ fetch(url, {
         "self": "http:\/\/kniflow.test\/api\/logout"
     }
 }</code></pre>
+<blockquote>
+<p>Example response (422, when any validation failed.):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/device_name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        }
+    ]
+}</code></pre>
 <div id="execution-results-POSTapi-logout" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-logout"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-logout"></code></pre>
@@ -464,7 +566,7 @@ fetch(url, {
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTapi-logout"></code></pre>
 </div>
-<form id="form-POSTapi-logout" data-method="POST" data-path="api/logout" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Content-Type":"application\/x-www-form-urlencoded","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-logout', this);">
+<form id="form-POSTapi-logout" data-method="POST" data-path="api/logout" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-logout', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
         <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-logout" onclick="tryItOut('POSTapi-logout');">Try it out ⚡</button>

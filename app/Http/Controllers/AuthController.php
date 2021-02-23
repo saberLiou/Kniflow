@@ -40,6 +40,7 @@ class AuthController extends Controller
      * @group 01. Authentication
      * @unauthenticated
      * @responseFile status=201 scenario="when registration succeeded." responses/auth.register/201.json
+     * @responseFile status=422 scenario="when any validation failed." responses/auth.register/422.json
      *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -59,6 +60,7 @@ class AuthController extends Controller
      * @group 01. Authentication
      * @unauthenticated
      * @responseFile status=200 scenario="when login succeeded." responses/auth.login/200.json
+     * @responseFile status=422 scenario="when any validation failed." responses/auth.login/422.json
      *
      * @param LoginRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -76,9 +78,11 @@ class AuthController extends Controller
      *
      * @group 01. Authentication
      * @responseFile status=200 scenario="when logout succeeded." responses/auth.logout/200.json
+     * // TODO: handle \Illuminate\Auth\AuthenticationException and testing.
+     * @responseFile status=422 scenario="when any validation failed." responses/auth.logout/422.json
      *
      * @param LogoutRequest $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function logout(LogoutRequest $request)
     {

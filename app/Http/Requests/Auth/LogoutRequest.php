@@ -42,7 +42,7 @@ class LogoutRequest extends FormRequest
         return [
             PersonalAccessToken::DEVICE_NAME => [
                 'description' => 'The device name of the user.',
-                'example' => 'saberLiou\'s Pixel',
+                'example' => config('scribe.example_values.device_name'),
             ],
         ];
     }

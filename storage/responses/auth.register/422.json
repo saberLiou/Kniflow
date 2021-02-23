@@ -1,0 +1,43 @@
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "422",
+            "source": {
+                "pointer": "/data/attributes/name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "/data/attributes/email",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "/data/attributes/password",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "/data/attributes/device_name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        }
+    ]
+}

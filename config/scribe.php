@@ -67,7 +67,6 @@ return [
                  * Additional headers to be added to the example requests
                  */
                 'headers' => [
-                    'Content-Type' => 'application/x-www-form-urlencoded',
                     'Accept' => 'application/json',
                 ],
 
@@ -383,6 +382,7 @@ INTRO
         'name' => 'saberLiou',
         'email' => 'saberliou@gmail.com',
         'password' => '12345678',
+        'device_name' => 'saberLiou\'s Pixel',
         'datetime' => '1970-01-01 00:00:00',
     ],
 ];

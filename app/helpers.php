@@ -51,50 +51,68 @@ if (!function_exists('error_response')) {
      */
     function error_response(array $errors, int $status)
     {
-        $errorObjects = [];
-        foreach ($errors as $field => $messages) {
-            $errorObject = [
-                'status' => (string) $status,
-                'source' => [
-                    'pointer' => "",
-                    'parameter' => "",
-                ],
-                "title" => "",
-                "detail" => "",
-            ];
-            switch ($status) {
-                case Response::HTTP_UNPROCESSABLE_ENTITY:
-                    $errorObject['source']['pointer'] = "/data/attributes/$field";
-                    $errorObject['title'] = "Invalid Attribute";
-                    $errorObject['detail'] = $messages[0];
-                    break;
-                default:
-                    $errorObject['title'] = $field;
-                    $errorObject['detail'] = $messages;
-            }
-            $errorObjects[] = $errorObject;
-        }
-
         $response = response()->json([
             'jsonapi' => ['version' => '2021.02'],
-            'errors' => $errorObjects,
+            'errors' => format_error_objects($status, $errors),
         ], $status);
 
         return $response;
     }
 }
 
-if (!function_exists('endpoint')) {
+if (!function_exists('format_error_objects')) {
     /**
-     * Generate the endpoint of a URL by a named route.
+     * Format error objects in an error json response,
+     * reference: https://jsonapi.org/examples/#error-objects
      *
-     * @param string $name
-     * @param array $parameters
-     * @return string
+     * @param integer $status
+     * @param array $errors
+     * @return array
      */
-    function endpoint(string $name, array $parameters = [])
+    function format_error_objects(int $status, array $errors)
     {
-        return route($name, $parameters, false);
+        $errorObjects = [];
+        foreach ($errors as $field => $messages) {
+            switch ($status) {
+                case Response::HTTP_UNPROCESSABLE_ENTITY:
+                    $errorObjects[] = format_error_object($status, "Invalid Attribute", $messages[0], $field);
+                    break;
+                default:
+                    $errorObjects[] = format_error_object($status, $field, $messages);
+            }
+        }
+        return $errorObjects;
+    }
+}
+
+if (!function_exists('format_error_object')) {
+    /**
+     * Format an error object in an error json response,
+     * reference: https://jsonapi.org/format/#error-objects.
+     *
+     * @param integer $status
+     * @param string $title
+     * @param string $detail
+     * @param string $pointer
+     * @param string $parameter
+     * @return array
+     */
+    function format_error_object(
+        int $status,
+        string $title = "",
+        string $detail = "",
+        string $pointer = "",
+        string $parameter = ""
+    ) {
+        return [
+            'status' => (string) $status,
+            'source' => [
+                'pointer' => !empty($pointer) ? "/data/attributes/$pointer" : "",
+                'parameter' => $parameter,
+            ],
+            "title" => $title,
+            "detail" => $detail,
+        ];
     }
 }
 

@@ -30,11 +30,6 @@ class LogoutTest extends TestCase
         $this->url = route('auth.logout');
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function testWhenLogoutSucceeded()
     {
         $this->withoutExceptionHandling();
@@ -56,7 +51,7 @@ class LogoutTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->postJson($this->url, $formData, $this->headers);
+        $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_OK)->assertJson($expected);
@@ -69,14 +64,10 @@ class LogoutTest extends TestCase
             PersonalAccessToken::DEVICE_NAME => config('scribe.example_values.device_name'),
         ];
 
-        $expected = [
-            'errors' => format_error_objects(Response::HTTP_UNAUTHORIZED, [
-                Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => "Unauthenticated.",
-            ])
-        ];
+        $expected = $this->unauthenticatedErrorMessage();
 
         // WHEN
-        $response = $this->postJson($this->url, $formData, $this->headers);
+        $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNAUTHORIZED)->assertJson($expected);
@@ -101,7 +92,7 @@ class LogoutTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->postJson($this->url, $formData, $this->headers);
+        $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)->assertJson($expected);

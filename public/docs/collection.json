@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "1013e87b-eeed-47f4-889a-8697b63ca1f2",
+        "_postman_id": "2e75baf2-9d35-4c7a-ba04-59468d265d81",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -110,6 +110,37 @@
                             "raw": "{\n    \"device_name\": \"saberLiou's Pixel\"\n}"
                         },
                         "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "02. Categories",
+            "description": "",
+            "item": [
+                {
+                    "name": "Display a listing of the categories.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
                     },
                     "response": []
                 }

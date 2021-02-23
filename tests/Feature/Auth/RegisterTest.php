@@ -58,7 +58,7 @@ class RegisterTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->postJson($this->url, $formData, $this->headers);
+        $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_CREATED)->assertJson($expected);
@@ -84,7 +84,7 @@ class RegisterTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->postJson($this->url, $formData, $this->headers);
+        $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)->assertJson($expected);

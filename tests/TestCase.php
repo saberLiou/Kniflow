@@ -6,6 +6,7 @@ use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -26,6 +27,17 @@ abstract class TestCase extends BaseTestCase
     protected $headers;
 
     /**
+     * The json structure of a success response.
+     *
+     * @var array
+     */
+    protected $successResponseStructure = [
+        'jsonapi' => ['version'],
+        'data',
+        'links' => ['self'],
+    ];
+
+    /**
      * Setup the test environment.
      *
      * @return void
@@ -37,18 +49,6 @@ abstract class TestCase extends BaseTestCase
         $this->headers = [
             'Accept' => 'application/json',
         ];
-    }
-
-    /**
-     * Format error messages of the field when validation failed.
-     *
-     * @param string $field
-     * @param string $rule
-     * @return array
-     */
-    protected function formatValidationErrorMessages(string $field, string $rule)
-    {
-        return [trans('validation.attributes.' . $field) . ' ' . trans('validation-inline.' . $rule)];
     }
 
     /**
@@ -66,5 +66,31 @@ abstract class TestCase extends BaseTestCase
             ]),
             ['*']
         );
+    }
+
+    /**
+     * Return unauthenticated error message.
+     *
+     * @return array
+     */
+    protected function unauthenticatedErrorMessage()
+    {
+        return [
+            'errors' => format_error_objects(Response::HTTP_UNAUTHORIZED, [
+                Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => "Unauthenticated.",
+            ])
+        ];
+    }
+
+    /**
+     * Format error messages of the field when validation failed.
+     *
+     * @param string $field
+     * @param string $rule
+     * @return array
+     */
+    protected function formatValidationErrorMessages(string $field, string $rule)
+    {
+        return [trans('validation.attributes.' . $field) . ' ' . trans('validation-inline.' . $rule)];
     }
 }

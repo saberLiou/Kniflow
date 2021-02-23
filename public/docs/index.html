@@ -67,7 +67,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Base URL</p>
 </blockquote>
 <pre><code class="language-yaml">http://kniflow.test</code></pre><h1>Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>01. Authentication</h1>
 <h2>Register a user with a personal access token for the device.</h2>
@@ -606,6 +606,104 @@ fetch(url, {
 <br>
 The device name of the user.</p>
 
+</form><h1>02. Categories</h1>
+<h2>Display a listing of the categories.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://kniflow.test/api/categories" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-python">import requests
+import json
+
+url = 'http://kniflow.test/api/categories'
+headers = {
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+<pre><code class="language-php">
+$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://kniflow.test/api/categories',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://kniflow.test/api/categories"
+);
+
+let headers = {
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200, when categories displayed.):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "data": [
+        {
+            "id": 1,
+            "type": "categories",
+            "attributes": {
+                "slug": "category",
+                "name": "category",
+                "sort": 0,
+                "created_at": "1970-01-01 00:00:03",
+                "updated_at": "1970-01-01 00:00:03"
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": 1,
+                        "name": "saberLiou",
+                        "email": "saberliou@gmail.com",
+                        "email_verified_at": null,
+                        "created_at": "1970-01-01 00:00:01",
+                        "updated_at": "1970-01-01 00:00:01"
+                    }
+                },
+                "posts": []
+            }
+        }
+    ],
+    "links": {
+        "self": "http:\/\/kniflow.test\/api\/categories"
+    }
+}</code></pre>
+<div id="execution-results-GETapi-categories" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-categories"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-categories"></code></pre>
+</div>
+<div id="execution-error-GETapi-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-categories"></code></pre>
+</div>
+<form id="form-GETapi-categories" data-method="GET" data-path="api/categories" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories" onclick="tryItOut('GETapi-categories');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories" onclick="cancelTryOut('GETapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/categories</code></b>
+</p>
 </form>
     </div>
     <div class="dark-box">

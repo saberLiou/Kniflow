@@ -20,7 +20,20 @@ Route::post('register', [AuthController::class, 'register'])->name('auth.registe
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    Route::apiResource('categories', CategoryController::class)->except([
+        'index', 'show'
+    ]);
+
+    Route::apiResource('posts', PostController::class)->except([
+        'index', 'show'
+    ]);
 });
 
-Route::apiResource('categories', CategoryController::class);
-Route::apiResource('posts', PostController::class);
+Route::apiResource('categories', CategoryController::class)->only([
+    'index', 'show'
+]);
+
+Route::apiResource('posts', PostController::class)->only([
+    'index', 'show'
+]);

@@ -5,20 +5,47 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CategoryController.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * The CategoryService instance.
+     *
+     * @var CategoryService
+     */
+    protected $categoryService;
+
+    /**
+     * Create a CategoryController instance.
+     *
+     * @param CategoryService $categoryService
+     */
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
+    /**
+     * Display a listing of the categories.
+     *
+     * @group 02. Categories
+     * @unauthenticated
+     * @responseFile status=200 scenario="when categories displayed." responses/categories.index/200.json
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        return new CategoryCollection(Category::all());
+        return new CategoryCollection($this->categoryService->indexCategories());
     }
 
     /**

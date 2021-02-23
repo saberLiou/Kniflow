@@ -236,6 +236,36 @@ paths:
                                     example: 'saberLiou''s Pixel'
                             required:
                                 - device_name
+    /api/categories:
+        get:
+            summary: 'Display a listing of the categories.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, when categories displayed.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    data: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:03', updated_at: '1970-01-01 00:00:03' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' } }, posts: [] } }]
+                                    links: { self: 'http://kniflow.test/api/categories' }
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    data: { type: array, example: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:03', updated_at: '1970-01-01 00:00:03' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' } }, posts: [] } }], items: { type: object } }
+                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories' } }
+            tags:
+                - '02. Categories'
+            security: []
 components:
     securitySchemes:
         default:

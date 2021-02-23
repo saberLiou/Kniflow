@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
@@ -48,14 +49,19 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Throwable  $e
-     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $e)
     {
-        if ($request->wantsJson()) {
+        if ($request->expectsJson()) {
             switch (get_class($e)) {
+                case AuthenticationException::class:
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => $e->getMessage()],
+                        Response::HTTP_UNAUTHORIZED
+                    );
                 case ModelNotFoundException::class:
                     return error_response(
                         [Response::$statusTexts[Response::HTTP_NOT_FOUND] => "Cannot find the resource."],

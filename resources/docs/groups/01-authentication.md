@@ -527,6 +527,26 @@ fetch(url, {
     }
 }
 ```
+> Example response (401, without personal access token.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "401",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Unauthorized",
+            "detail": "Unauthenticated."
+        }
+    ]
+}
+```
 > Example response (422, when any validation failed.):
 
 ```json

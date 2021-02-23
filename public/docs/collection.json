@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "4cf31431-94a7-4c79-8df5-b0b9a4223171",
+        "_postman_id": "1013e87b-eeed-47f4-889a-8697b63ca1f2",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"

@@ -197,6 +197,18 @@ paths:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:02', updated_at: '1970-01-01 00:00:02' }, relationships: { tokens: [], categories: [], posts: [] } } }
                                     links: { type: object, example: { self: 'http://kniflow.test/api/logout' } }
+                401:
+                    description: '401, without personal access token.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    errors: [{ status: '401', source: { pointer: '', parameter: '' }, title: Unauthorized, detail: Unauthenticated. }]
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    errors: { type: array, example: [{ status: '401', source: { pointer: '', parameter: '' }, title: Unauthorized, detail: Unauthenticated. }], items: { type: object } }
                 422:
                     description: '422, when any validation failed.'
                     content:

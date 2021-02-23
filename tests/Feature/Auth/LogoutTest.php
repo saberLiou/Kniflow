@@ -62,6 +62,26 @@ class LogoutTest extends TestCase
         $response->assertStatus(Response::HTTP_OK)->assertJson($expected);
     }
 
+    public function testWithoutPersonalAccessToken()
+    {
+        // GIVEN
+        $formData = [
+            PersonalAccessToken::DEVICE_NAME => config('scribe.example_values.device_name'),
+        ];
+
+        $expected = [
+            'errors' => format_error_objects(Response::HTTP_UNAUTHORIZED, [
+                Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => "Unauthenticated.",
+            ])
+        ];
+
+        // WHEN
+        $response = $this->postJson($this->url, $formData, $this->headers);
+
+        // THEN
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED)->assertJson($expected);
+    }
+
     public function testWhenAnyValidationFailed()
     {
         $this->withoutExceptionHandling();

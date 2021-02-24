@@ -54,18 +54,17 @@ abstract class TestCase extends BaseTestCase
     /**
      * Get an authenticated user.
      *
-     * @return void
+     * @param User|null $user
+     * @param array $scopes
+     * @return \Illuminate\Contracts\Auth\Authenticatable
      */
-    protected function authenticatedUser()
+    protected function authenticatedUser(User $user = null, array $scopes = ['*'])
     {
-        Sanctum::actingAs(
-            User::factory()->create([
-                User::NAME => config('scribe.example_values.name'),
-                User::EMAIL => config('scribe.example_values.email'),
-                User::PASSWORD => Hash::make(config('scribe.example_values.password')),
-            ]),
-            ['*']
-        );
+        return Sanctum::actingAs($user ?? User::factory()->create([
+            User::NAME => config('scribe.example_values.name'),
+            User::EMAIL => config('scribe.example_values.email'),
+            User::PASSWORD => Hash::make(config('scribe.example_values.password')),
+        ])->refresh(), $scopes);
     }
 
     /**

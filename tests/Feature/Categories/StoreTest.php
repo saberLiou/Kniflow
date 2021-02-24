@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Categories;
 
-use App\Models\PersonalAccessToken;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 /**
- * Test AuthController@logout.
+ * Test CategoryController@store.
  *
  * @author saberLiou <saberliou@gmail.com>
  */
-class LogoutTest extends TestCase
+class StoreTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -27,10 +27,10 @@ class LogoutTest extends TestCase
     {
         parent::setUp();
 
-        $this->url = route('auth.logout');
+        $this->url = route('categories.store');
     }
 
-    public function testWhenLogoutSucceeded()
+    public function testWhenCategoryCreated()
     {
         $this->withoutExceptionHandling();
 
@@ -38,30 +38,36 @@ class LogoutTest extends TestCase
         $authUser = $this->authenticatedUser();
 
         $formData = [
-            PersonalAccessToken::DEVICE_NAME => config('scribe.example_values.device_name'),
+            Category::NAME => config('scribe.example_values.name'),
+            Category::SORT => 1,
         ];
 
         $expected = [
-            'data' => format_resource_object($authUser->id, User::TABLE, [
-                User::NAME => $authUser->name,
-                User::EMAIL => $authUser->email,
+            'data' => format_resource_object(1, Category::TABLE, [
+                Category::NAME => $formData[Category::NAME],
+                Category::SORT => $formData[Category::SORT],
             ], [
-                User::TOKENS => [],
-            ])
+                Category::USER => [
+                    'data' => [
+                        User::ID => $authUser->id,
+                    ],
+                ],
+            ]),
         ];
 
         // WHEN
         $response = $this->post($this->url, $formData, $this->headers);
 
         // THEN
-        $response->assertStatus(Response::HTTP_OK)->assertJson($expected);
+        $response->assertStatus(Response::HTTP_CREATED)->assertJson($expected);
     }
 
     public function testWithoutPersonalAccessToken()
     {
         // GIVEN
         $formData = [
-            PersonalAccessToken::DEVICE_NAME => config('scribe.example_values.device_name'),
+            Category::NAME => config('scribe.example_values.name'),
+            Category::SORT => 1,
         ];
 
         $expected = $this->unauthenticatedErrorMessage();
@@ -84,11 +90,8 @@ class LogoutTest extends TestCase
 
         $expected = [
             'errors' => format_error_objects(Response::HTTP_UNPROCESSABLE_ENTITY, [
-                PersonalAccessToken::DEVICE_NAME => $this->formatValidationErrorMessages(
-                    PersonalAccessToken::DEVICE_NAME,
-                    'required'
-                ),
-            ])
+                Category::NAME => $this->formatValidationErrorMessages(Category::NAME, 'required'),
+            ]),
         ];
 
         // WHEN

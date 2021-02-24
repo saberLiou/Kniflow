@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
+/**
+ * Class Post.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class Post extends Model
 {
     use DateTimeFormatted, HasFactory, Sluggable;

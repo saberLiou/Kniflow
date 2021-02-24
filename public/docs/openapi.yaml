@@ -9,7 +9,7 @@ servers:
 paths:
     /api/register:
         post:
-            summary: 'Register a user with a personal access token for the device.'
+            summary: '1-1. Register a user with a personal access token for the device.'
             description: ''
             parameters:
                 -
@@ -86,7 +86,7 @@ paths:
             security: []
     /api/login:
         post:
-            summary: 'Login a user with a new personal access token for the device.'
+            summary: '1-2. Login a user with a new personal access token for the device.'
             description: ''
             parameters:
                 -
@@ -112,11 +112,11 @@ paths:
                                 type: object
                                 example:
                                     jsonapi: { version: '2021.02' }
-                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } }
+                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } }
                                     links: { self: 'http://kniflow.test/api/login' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
-                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } } }
+                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } } }
                                     links: { type: object, example: { self: 'http://kniflow.test/api/login' } }
                 422:
                     description: '422, when any validation failed.'
@@ -158,7 +158,7 @@ paths:
             security: []
     /api/logout:
         post:
-            summary: 'Logout a user with all the personal access tokens being revoked on the device.'
+            summary: '1-3. Logout a user with all the personal access tokens being revoked on the device.'
             description: ''
             parameters:
                 -
@@ -191,11 +191,11 @@ paths:
                                 type: object
                                 example:
                                     jsonapi: { version: '2021.02' }
-                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:02', updated_at: '1970-01-01 00:00:02' }, relationships: { tokens: [], categories: [], posts: [] } }
+                                    data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { tokens: [], categories: [], posts: [] } }
                                     links: { self: 'http://kniflow.test/api/logout' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
-                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:02', updated_at: '1970-01-01 00:00:02' }, relationships: { tokens: [], categories: [], posts: [] } } }
+                                    data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { tokens: [], categories: [], posts: [] } } }
                                     links: { type: object, example: { self: 'http://kniflow.test/api/logout' } }
                 401:
                     description: '401, without personal access token.'
@@ -237,8 +237,91 @@ paths:
                             required:
                                 - device_name
     /api/categories:
+        post:
+            summary: '2-2. Store a newly created category in storage.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Authorization
+                    description: ''
+                    example: 'Bearer {personal-access-token}'
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                201:
+                    description: '201, when category created.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    data: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
+                                    links: { self: 'http://kniflow.test/api/categories' }
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    data: { type: object, example: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
+                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories' } }
+                401:
+                    description: '401, without personal access token.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    errors: [{ status: '401', source: { pointer: '', parameter: '' }, title: Unauthorized, detail: Unauthenticated. }]
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    errors: { type: array, example: [{ status: '401', source: { pointer: '', parameter: '' }, title: Unauthorized, detail: Unauthenticated. }], items: { type: object } }
+                422:
+                    description: '422, when any validation failed.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    errors: [{ status: '422', source: { pointer: /data/attributes/name, parameter: '' }, title: 'Invalid Attribute', detail: '{validation-error-message}' }, { status: '422', source: { pointer: /data/attributes/sort, parameter: '' }, title: 'Invalid Attribute', detail: '{validation-error-message}' }]
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    errors: { type: array, example: [{ status: '422', source: { pointer: /data/attributes/name, parameter: '' }, title: 'Invalid Attribute', detail: '{validation-error-message}' }, { status: '422', source: { pointer: /data/attributes/sort, parameter: '' }, title: 'Invalid Attribute', detail: '{validation-error-message}' }], items: { type: object } }
+            tags:
+                - '02. Categories'
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: 'The name of the category.'
+                                    example: saberLiou
+                                sort:
+                                    type: integer
+                                    description: 'The sort of the category.'
+                                    example: 0
+                            required:
+                                - name
         get:
-            summary: 'Display a listing of the categories.'
+            summary: '2-1. Display a listing of the categories.'
             description: ''
             parameters:
                 -
@@ -257,11 +340,11 @@ paths:
                                 type: object
                                 example:
                                     jsonapi: { version: '2021.02' }
-                                    data: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:03', updated_at: '1970-01-01 00:00:03' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' } }, posts: [] } }]
+                                    data: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }]
                                     links: { self: 'http://kniflow.test/api/categories' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
-                                    data: { type: array, example: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:03', updated_at: '1970-01-01 00:00:03' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' } }, posts: [] } }], items: { type: object } }
+                                    data: { type: array, example: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }], items: { type: object } }
                                     links: { type: object, example: { self: 'http://kniflow.test/api/categories' } }
             tags:
                 - '02. Categories'

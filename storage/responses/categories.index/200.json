@@ -10,8 +10,8 @@
                 "slug": "category",
                 "name": "category",
                 "sort": 0,
-                "created_at": "1970-01-01 00:00:03",
-                "updated_at": "1970-01-01 00:00:03"
+                "created_at": "1970-01-01 00:00:00",
+                "updated_at": "1970-01-01 00:00:00"
             },
             "relationships": {
                 "user": {
@@ -20,8 +20,8 @@
                         "name": "saberLiou",
                         "email": "saberliou@gmail.com",
                         "email_verified_at": null,
-                        "created_at": "1970-01-01 00:00:01",
-                        "updated_at": "1970-01-01 00:00:01"
+                        "created_at": "1970-01-01 00:00:00",
+                        "updated_at": "1970-01-01 00:00:00"
                     }
                 },
                 "posts": []

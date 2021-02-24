@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Categories;
 
 use App\Http\Requests\Traits\ValidatorFailed;
-use App\Models\PersonalAccessToken;
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class LogoutRequest.
+ * Class StoreRequest.
  *
  * @author saberLiou <saberliou@gmail.com>
  */
-class LogoutRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     use ValidatorFailed;
 
@@ -33,7 +33,8 @@ class LogoutRequest extends FormRequest
     public function rules()
     {
         return [
-            PersonalAccessToken::DEVICE_NAME => 'required|string|max:255',
+            Category::NAME => 'required|string|max:255',
+            Category::SORT => 'integer',
         ];
     }
 
@@ -45,9 +46,13 @@ class LogoutRequest extends FormRequest
     public function bodyParameters()
     {
         return [
-            PersonalAccessToken::DEVICE_NAME => [
-                'description' => 'The device name of the user.',
-                'example' => config('scribe.example_values.device_name'),
+            Category::NAME => [
+                'description' => 'The name of the category.',
+                'example' => config('scribe.example_values.name'),
+            ],
+            Category::SORT => [
+                'description' => 'The sort of the category.',
+                'example' => 0,
             ],
         ];
     }

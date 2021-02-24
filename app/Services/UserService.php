@@ -79,14 +79,15 @@ class UserService
     }
 
     /**
-     * Logout a user with all the personal access tokens being revoked on the device.
+     * Logout the authenticated user with all the personal access tokens being revoked on the device.
      *
+     * @param User $authUser
      * @param string $deviceName
      * @return User
      */
-    public function logoutUser(User $user, string $deviceName)
+    public function logoutUser(User $authUser, string $deviceName)
     {
-        $this->userRepository->deletePersonalAccessTokensByNameForUser($user, $deviceName);
-        return $user;
+        $this->userRepository->deletePersonalAccessTokensByNameForUser($authUser, $deviceName);
+        return $authUser;
     }
 }

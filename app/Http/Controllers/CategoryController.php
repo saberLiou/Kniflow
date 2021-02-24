@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
+use App\Http\Requests\Categories\StoreRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -31,11 +32,12 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryService $categoryService)
     {
+        $this->authorizeResource(Category::class, 'category', ['except' => ['index', 'show']]);
         $this->categoryService = $categoryService;
     }
 
     /**
-     * Display a listing of the categories.
+     * 2-1. Display a listing of the categories.
      *
      * @group 02. Categories
      * @unauthenticated
@@ -49,30 +51,22 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 2-2. Store a newly created category in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @group 02. Categories
+     * @responseFile status=201 scenario="when category created." responses/categories.store/201.json
+     * @responseFile status=401 scenario="without personal access token." responses/401.json
+     * @responseFile status=422 scenario="when any validation failed." responses/categories.store/422.json
+     *
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            Category::USER_ID => 'required|integer',
-            Category::NAME => 'required|string|max:255',
-            Category::SORT => 'integer',
-        ]);
-        if ($validator->fails()) {
-            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
-        return new CategoryResource(
-            Category::create($request->only([
-                Category::USER_ID,
-                Category::NAME,
-                Category::SORT,
-            ]))->refresh(),
-            Response::HTTP_CREATED
-        );
+        return new CategoryResource($this->categoryService->createCategory($request->user(), $request->only([
+            Category::NAME,
+            Category::SORT,
+        ])), Response::HTTP_CREATED);
     }
 
     /**

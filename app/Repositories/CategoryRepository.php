@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use App\Models\User;
 
 /**
  * Class UserRepository.
@@ -27,6 +28,30 @@ class CategoryRepository extends BaseRepository
     {
         parent::__construct($category);
         $this->category = $category;
+    }
+
+    /**
+     * Create a category by the authenticated user into the database,
+     * and return the created user instance with original attributes.
+     *
+     * @param User $authUser
+     * @param array $data
+     * @return Category
+     */
+    public function createCategory(User $authUser, array $data)
+    {
+        return $authUser->categories()->create($data);
+    }
+
+    /**
+     * Return the category instance with fresh attributes from the database.
+     *
+     * @param Category $category
+     * @return Category
+     */
+    public function refreshCategory(Category $category)
+    {
+        return $category->refresh();
     }
 
     /**

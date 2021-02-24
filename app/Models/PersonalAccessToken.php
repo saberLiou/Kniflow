@@ -6,6 +6,11 @@ use App\Models\Traits\DateTimeFormatted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 
+/**
+ * Class PersonalAccessToken.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class PersonalAccessToken extends SanctumPersonalAccessToken
 {
     use DateTimeFormatted, HasFactory;

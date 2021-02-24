@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
+/**
+ * Class Category.
+ *
+ * @author saberLiou <saberliou@gmail.com>
+ */
 class Category extends Model
 {
     use DateTimeFormatted, HasFactory, Sluggable;
@@ -33,7 +38,6 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        self::USER_ID,
         self::NAME,
         self::SORT,
     ];

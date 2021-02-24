@@ -1,7 +1,7 @@
 # 01. Authentication
 
 
-## Register a user with a personal access token for the device.
+## 1-1. Register a user with a personal access token for the device.
 
 
 
@@ -219,7 +219,7 @@ The device name of the user.</p>
 </form>
 
 
-## Login a user with a new personal access token for the device.
+## 1-2. Login a user with a new personal access token for the device.
 
 
 
@@ -313,8 +313,8 @@ fetch(url, {
             "name": "saberLiou",
             "email": "saberliou@gmail.com",
             "email_verified_at": null,
-            "created_at": "1970-01-01 00:00:01",
-            "updated_at": "1970-01-01 00:00:01",
+            "created_at": "1970-01-01 00:00:00",
+            "updated_at": "1970-01-01 00:00:00",
             "token": "{personal-access-token}"
         },
         "relationships": {
@@ -420,7 +420,7 @@ The device name of the user.</p>
 </form>
 
 
-## Logout a user with all the personal access tokens being revoked on the device.
+## 1-3. Logout a user with all the personal access tokens being revoked on the device.
 
 <small class="badge badge-darkred">requires authentication</small>
 
@@ -513,8 +513,8 @@ fetch(url, {
             "name": "saberLiou",
             "email": "saberliou@gmail.com",
             "email_verified_at": null,
-            "created_at": "1970-01-01 00:00:02",
-            "updated_at": "1970-01-01 00:00:02"
+            "created_at": "1970-01-01 00:00:00",
+            "updated_at": "1970-01-01 00:00:00"
         },
         "relationships": {
             "tokens": [],

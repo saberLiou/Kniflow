@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\CategoryRepository;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CategoryService.
@@ -37,5 +37,19 @@ class CategoryService
     public function indexCategories()
     {
         return $this->categoryRepository->getCategories();
+    }
+
+    /**
+     * Store a newly created category in storage.
+     *
+     * @param User $authUser
+     * @param array $data
+     * @return \App\Models\Category
+     */
+    public function createCategory(User $authUser, array $data)
+    {
+        return $this->categoryRepository->refreshCategory(
+            $this->categoryRepository->createCategory($authUser, $data)
+        );
     }
 }

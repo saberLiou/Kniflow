@@ -35,7 +35,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a user with a personal access token for the device.
+     * 1-1. Register a user with a personal access token for the device.
      *
      * @group 01. Authentication
      * @unauthenticated
@@ -55,7 +55,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Login a user with a new personal access token for the device.
+     * 1-2. Login a user with a new personal access token for the device.
      *
      * @group 01. Authentication
      * @unauthenticated
@@ -74,7 +74,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout a user with all the personal access tokens being revoked on the device.
+     * 1-3. Logout a user with all the personal access tokens being revoked on the device.
      *
      * @group 01. Authentication
      * @responseFile status=200 scenario="when logout succeeded." responses/auth.logout/200.json

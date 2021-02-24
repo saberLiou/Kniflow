@@ -349,6 +349,57 @@ paths:
             tags:
                 - '02. Categories'
             security: []
+    '/api/categories/{category}':
+        get:
+            summary: '2-3. Display the specified category.'
+            description: ''
+            parameters:
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: '200, when category displayed.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    data: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
+                                    links: { self: 'http://kniflow.test/api/categories/saberLiou' }
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    data: { type: object, example: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
+                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories/saberLiou' } }
+                404:
+                    description: '404, when category not found.'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    jsonapi: { version: '2021.02' }
+                                    errors: [{ status: '404', source: { pointer: '', parameter: '' }, title: 'Not Found', detail: 'Cannot find the resource.' }]
+                                properties:
+                                    jsonapi: { type: object, example: { version: '2021.02' } }
+                                    errors: { type: array, example: [{ status: '404', source: { pointer: '', parameter: '' }, title: 'Not Found', detail: 'Cannot find the resource.' }], items: { type: object } }
+            tags:
+                - '02. Categories'
+            security: []
+        parameters:
+            -
+                in: path
+                name: category
+                description: ''
+                example: aut
+                required: true
+                schema:
+                    type: string
 components:
     securitySchemes:
         default:

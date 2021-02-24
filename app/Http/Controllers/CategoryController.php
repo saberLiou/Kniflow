@@ -70,7 +70,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 2-3. Display the specified category.
+     *
+     * @group 02. Categories
+     * @unauthenticated
+     * @responseFile status=200 scenario="when category displayed." responses/categories.show/200.json
+     * @responseFile status=404 scenario="when category not found." responses/404_model.json
      *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\JsonResponse

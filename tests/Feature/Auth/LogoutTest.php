@@ -64,7 +64,7 @@ class LogoutTest extends TestCase
             PersonalAccessToken::DEVICE_NAME => config('scribe.example_values.device_name'),
         ];
 
-        $expected = $this->unauthenticatedErrorMessage();
+        $expected = $this->errorMessage(Response::HTTP_UNAUTHORIZED);
 
         // WHEN
         $response = $this->post($this->url, $formData, $this->headers);

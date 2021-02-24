@@ -55,7 +55,6 @@ return [
              */
             'exclude' => [
                 // '/health', 'admin.*'
-                'categories.show',
                 'categories.update',
                 'categories.destroy',
                 'posts.index',

@@ -68,15 +68,26 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Return unauthenticated error message.
+     * Return an error message by the status code of an HTTP response.
      *
+     * @param integer $status
      * @return array
      */
-    protected function unauthenticatedErrorMessage()
+    protected function errorMessage(int $status)
     {
+        switch ($status) {
+            case Response::HTTP_UNAUTHORIZED:
+                $message = "Unauthenticated.";
+                break;
+            case Response::HTTP_NOT_FOUND:
+                $message = "Cannot find the resource.";
+                break;
+            default:
+                $message = "";
+        }
         return [
-            'errors' => format_error_objects(Response::HTTP_UNAUTHORIZED, [
-                Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => "Unauthenticated.",
+            'errors' => format_error_objects($status, [
+                Response::$statusTexts[$status] => $message,
             ])
         ];
     }

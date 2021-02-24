@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "ab60d900-4ba6-4d37-93ee-c0a5c77a6410",
+        "_postman_id": "83d744ed-096e-4498-8f6f-aaf1f7d89c16",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -157,6 +157,39 @@
                             "path": "api\/categories",
                             "query": [],
                             "raw": "http:\/\/{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "2-3. Display the specified category.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories\/:category",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/categories\/:category",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "aut",
+                                    "description": ""
+                                }
+                            ]
                         },
                         "method": "GET",
                         "header": [

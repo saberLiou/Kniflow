@@ -70,7 +70,7 @@ class StoreTest extends TestCase
             Category::SORT => 1,
         ];
 
-        $expected = $this->unauthenticatedErrorMessage();
+        $expected = $this->errorMessage(Response::HTTP_UNAUTHORIZED);
 
         // WHEN
         $response = $this->post($this->url, $formData, $this->headers);

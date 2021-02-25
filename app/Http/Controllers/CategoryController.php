@@ -115,16 +115,20 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @group 02. Categories
+     * @responseFile status=200 scenario="when category deleted." responses/categories.destroy/200.json
+     * @responseFile status=401 scenario="without personal access token." responses/401.json
+     * @responseFile status=403 scenario="when category updated by wrong user." responses/403.json
+     * @responseFile status=404 scenario="when category not found." responses/404_model.json
+     *
+     * @param  Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
     {
         // TODO: idempotent response for DELETE.
-        $deletedCategory = $category;
-        $category->delete();
-        return new CategoryResource($deletedCategory);
+        return new CategoryResource($this->categoryService->deleteCategory($category));
     }
 }

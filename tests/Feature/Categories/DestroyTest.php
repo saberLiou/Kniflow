@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 /**
- * Test CategoryController@update.
+ * Test CategoryController@destroy.
  *
  * @author saberLiou <saberliou@gmail.com>
  */
-class UpdateTest extends TestCase
+class DestroyTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -34,13 +34,6 @@ class UpdateTest extends TestCase
     protected $author;
 
     /**
-     * The form data for request.
-     *
-     * @var array
-     */
-    protected $formData;
-
-    /**
      * Setup the test environment.
      *
      * @return void
@@ -57,17 +50,12 @@ class UpdateTest extends TestCase
             Category::SORT => 1,
         ])->refresh();
 
-        $this->url = route('categories.update', [
+        $this->url = route('categories.destroy', [
             'category' => $this->category->slug,
         ]);
-
-        $this->formData = [
-            Category::NAME => $this->faker->word,
-            Category::SORT => 2,
-        ];
     }
 
-    public function testWhenCategoryUpdated()
+    public function testWhenCategoryDelete()
     {
         $this->withoutExceptionHandling();
 
@@ -75,21 +63,21 @@ class UpdateTest extends TestCase
         $this->authenticatedUser($this->author);
 
         $expected = [
-            'data' => format_resource_object(1, Category::TABLE, [
-                Category::SLUG => strtolower($this->formData[Category::NAME]),
-                Category::NAME => $this->formData[Category::NAME],
-                Category::SORT => $this->formData[Category::SORT],
+            'data' => format_resource_object($this->category->id, Category::TABLE, [
+                Category::SLUG => $this->category->slug,
+                Category::NAME => $this->category->name,
+                Category::SORT => $this->category->sort,
             ], [
                 Category::USER => [
                     'data' => [
-                        User::ID => $this->author->id,
+                        User::ID => $this->category->user_id,
                     ],
                 ],
             ]),
         ];
 
         // WHEN
-        $response = $this->patchJson($this->url, $this->formData, $this->headers);
+        $response = $this->deleteJson($this->url, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_OK)->assertJson($expected);
@@ -101,7 +89,9 @@ class UpdateTest extends TestCase
         $expected = $this->errorMessage(Response::HTTP_UNAUTHORIZED);
 
         // WHEN
-        $response = $this->patchJson($this->url, $this->formData, $this->headers);
+        $response = $this->deleteJson($this->url, $this->headers);
+        // $this->delete will output:
+        // Symfony\Component\Routing\Exception\RouteNotFoundException: Route [login] not defined.
 
         // THEN
         $response->assertStatus(Response::HTTP_UNAUTHORIZED)->assertJson($expected);
@@ -115,7 +105,9 @@ class UpdateTest extends TestCase
         $expected = $this->errorMessage(Response::HTTP_FORBIDDEN);
 
         // WHEN
-        $response = $this->patchJson($this->url, $this->formData, $this->headers);
+        $response = $this->deleteJson($this->url, $this->headers);
+        // $this->delete will output:
+        // Illuminate\Auth\Access\AuthorizationException: This action is unauthorized.
 
         // THEN
         $response->assertStatus(Response::HTTP_FORBIDDEN)->assertJson($expected);
@@ -126,42 +118,16 @@ class UpdateTest extends TestCase
         // GIVEN
         $this->authenticatedUser($this->author);
 
-        $this->url = route('categories.update', [
+        $this->url = route('categories.destroy', [
             'category' => strtolower($this->faker->word),
         ]);
 
         $expected = $this->errorMessage(Response::HTTP_NOT_FOUND);
 
         // WHEN
-        $response = $this->patchJson($this->url, $this->formData, $this->headers);
+        $response = $this->deleteJson($this->url, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_NOT_FOUND)->assertJson($expected);
-    }
-
-    public function testWhenAnyValidationFailed()
-    {
-        $this->withoutExceptionHandling();
-
-        // GIVEN
-        $this->authenticatedUser($this->author);
-
-        $this->formData = [
-            Category::NAME => $this->faker->randomDigit,
-            Category::SORT => $this->faker->word,
-        ];
-
-        $expected = [
-            'errors' => format_error_objects(Response::HTTP_UNPROCESSABLE_ENTITY, [
-                Category::NAME => $this->formatValidationErrorMessages(Category::NAME, 'string'),
-                Category::SORT => $this->formatValidationErrorMessages(Category::SORT, 'integer'),
-            ]),
-        ];
-
-        // WHEN
-        $response = $this->patchJson($this->url, $this->formData, $this->headers);
-
-        // THEN
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)->assertJson($expected);
     }
 }

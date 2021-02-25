@@ -61,7 +61,7 @@ class IndexTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->get($this->url, $this->headers);
+        $response = $this->getJson($this->url, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_OK)->assertJson($expected);

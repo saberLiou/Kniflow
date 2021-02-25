@@ -65,4 +65,18 @@ class CategoryService
     {
         $this->categoryRepository->updateCategory($category, $data);
     }
+
+    /**
+     * Remove the specified category from storage,
+     * and return the deleted category.
+     *
+     * @param Category $category
+     * @return Category
+     */
+    public function deleteCategory(Category $category)
+    {
+        $deletedCategory = $category;
+        $this->categoryRepository->deleteCategory($category);
+        return $deletedCategory;
+    }
 }

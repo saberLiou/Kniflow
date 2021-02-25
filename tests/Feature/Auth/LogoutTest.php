@@ -67,7 +67,7 @@ class LogoutTest extends TestCase
         $expected = $this->errorMessage(Response::HTTP_UNAUTHORIZED);
 
         // WHEN
-        $response = $this->post($this->url, $formData, $this->headers);
+        $response = $this->postJson($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNAUTHORIZED)->assertJson($expected);
@@ -92,7 +92,7 @@ class LogoutTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->post($this->url, $formData, $this->headers);
+        $response = $this->postJson($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)->assertJson($expected);

@@ -63,7 +63,7 @@ class LoginTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->post($this->url, $formData, $this->headers);
+        $response = $this->postJson($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_OK)->assertJson($expected);
@@ -88,7 +88,7 @@ class LoginTest extends TestCase
         ];
 
         // WHEN
-        $response = $this->post($this->url, $formData, $this->headers);
+        $response = $this->postJson($this->url, $formData, $this->headers);
 
         // THEN
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)->assertJson($expected);

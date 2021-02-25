@@ -75,4 +75,15 @@ class CategoryRepository extends BaseRepository
     {
         $category->update($data);
     }
+
+    /**
+     * Delete the category instance in the database.
+     *
+     * @param Category $category
+     * @return void
+     */
+    public function deleteCategory(Category $category)
+    {
+        $category->delete();
+    }
 }

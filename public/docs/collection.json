@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "cfc6cfe9-be3b-4e7c-a58d-eec20af8ebbd",
+        "_postman_id": "ab391e4d-1c6f-4ae7-8da0-20c58bbe60c8",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -186,7 +186,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "eum",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -219,7 +219,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "molestiae",
+                                    "value": "rem",
                                     "description": ""
                                 }
                             ]
@@ -239,6 +239,36 @@
                             "mode": "raw",
                             "raw": "{\n    \"name\": \"saberLiou\",\n    \"sort\": 0\n}"
                         },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified category from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories\/:category",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/categories\/:category",
+                            "variable": [
+                                {
+                                    "id": "category",
+                                    "key": "category",
+                                    "value": "ea",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
                         "description": ""
                     },
                     "response": []

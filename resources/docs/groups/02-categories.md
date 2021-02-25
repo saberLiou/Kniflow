@@ -332,7 +332,7 @@ The sort of the category.</p>
 
 ```bash
 curl -X GET \
-    -G "http://kniflow.test/api/categories/eum" \
+    -G "http://kniflow.test/api/categories/qui" \
     -H "Accept: application/json"
 ```
 
@@ -340,7 +340,7 @@ curl -X GET \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories/eum'
+url = 'http://kniflow.test/api/categories/qui'
 headers = {
   'Accept': 'application/json'
 }
@@ -353,7 +353,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://kniflow.test/api/categories/eum',
+    'http://kniflow.test/api/categories/qui',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -366,7 +366,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories/eum"
+    "http://kniflow.test/api/categories/qui"
 );
 
 let headers = {
@@ -413,7 +413,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/saberLiou"
+        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
     }
 }
 ```
@@ -475,7 +475,7 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://kniflow.test/api/categories/molestiae" \
+    "http://kniflow.test/api/categories/rem" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -487,7 +487,7 @@ curl -X PUT \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories/molestiae'
+url = 'http://kniflow.test/api/categories/rem'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -506,7 +506,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://kniflow.test/api/categories/molestiae',
+    'http://kniflow.test/api/categories/rem',
     [
         'headers' => [
             'Authorization' => 'Bearer {personal-access-token}',
@@ -525,7 +525,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories/molestiae"
+    "http://kniflow.test/api/categories/rem"
 );
 
 let headers = {
@@ -561,7 +561,7 @@ fetch(url, {
             "slug": "guo-xun-liu",
             "name": "Guo-Xun Liu",
             "sort": 1,
-            "created_at": "1970-01-01 00:00:02",
+            "created_at": "1970-01-01 00:00:01",
             "updated_at": "1970-01-01 00:00:02"
         },
         "relationships": {
@@ -579,7 +579,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
+        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
     }
 }
 ```
@@ -716,6 +716,196 @@ The name of the category.</p>
 <br>
 The sort of the category.</p>
 
+</form>
+
+
+## Remove the specified category from storage.
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X DELETE \
+    "http://kniflow.test/api/categories/ea" \
+    -H "Authorization: Bearer {personal-access-token}" \
+    -H "Accept: application/json"
+```
+
+```python
+import requests
+import json
+
+url = 'http://kniflow.test/api/categories/ea'
+headers = {
+  'Authorization': 'Bearer {personal-access-token}',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()
+```
+
+```php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->delete(
+    'http://kniflow.test/api/categories/ea',
+    [
+        'headers' => [
+            'Authorization' => 'Bearer {personal-access-token}',
+            'Accept' => 'application/json',
+        ],
+    ]
+);
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+```javascript
+const url = new URL(
+    "http://kniflow.test/api/categories/ea"
+);
+
+let headers = {
+    "Authorization": "Bearer {personal-access-token}",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200, when category deleted.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "data": {
+        "id": 1,
+        "type": "categories",
+        "attributes": {
+            "slug": "guo-xun-liu",
+            "name": "Guo-Xun Liu",
+            "sort": 1,
+            "created_at": "1970-01-01 00:00:01",
+            "updated_at": "1970-01-01 00:00:02"
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": 1,
+                    "name": "saberLiou",
+                    "email": "saberliou@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "1970-01-01 00:00:00",
+                    "updated_at": "1970-01-01 00:00:00"
+                }
+            },
+            "posts": []
+        }
+    },
+    "links": {
+        "self": "http:\/\/kniflow.test\/api\/categories\/guo-xun-liu"
+    }
+}
+```
+> Example response (401, without personal access token.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "401",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Unauthorized",
+            "detail": "Unauthenticated."
+        }
+    ]
+}
+```
+> Example response (403, when category updated by wrong user.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "403",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Forbidden",
+            "detail": "This action is unauthorized."
+        }
+    ]
+}
+```
+> Example response (404, when category not found.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "404",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Not Found",
+            "detail": "Cannot find the resource."
+        }
+    ]
+}
+```
+<div id="execution-results-DELETEapi-categories--category-" hidden>
+    <blockquote>Received response<span id="execution-response-status-DELETEapi-categories--category-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-categories--category-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-categories--category-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-categories--category-"></code></pre>
+</div>
+<form id="form-DELETEapi-categories--category-" data-method="DELETE" data-path="api/categories/{category}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-categories--category-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-categories--category-" onclick="tryItOut('DELETEapi-categories--category-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-categories--category-" onclick="cancelTryOut('DELETEapi-categories--category-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-categories--category-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-red">DELETE</small>
+ <b><code>api/categories/{category}</code></b>
+</p>
+<p>
+<label id="auth-DELETEapi-categories--category-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="DELETEapi-categories--category-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="category" data-endpoint="DELETEapi-categories--category-" data-component="url" required  hidden>
+<br>
+</p>
 </form>
 
 

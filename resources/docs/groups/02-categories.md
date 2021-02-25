@@ -1,7 +1,125 @@
 # 02. Categories
 
 
-## 2-2. Store a newly created category in storage.
+## Display a listing of the categories.
+
+
+
+
+> Example request:
+
+```bash
+curl -X GET \
+    -G "http://kniflow.test/api/categories" \
+    -H "Accept: application/json"
+```
+
+```python
+import requests
+import json
+
+url = 'http://kniflow.test/api/categories'
+headers = {
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()
+```
+
+```php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->get(
+    'http://kniflow.test/api/categories',
+    [
+        'headers' => [
+            'Accept' => 'application/json',
+        ],
+    ]
+);
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+```javascript
+const url = new URL(
+    "http://kniflow.test/api/categories"
+);
+
+let headers = {
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response => response.json());
+```
+
+
+> Example response (200, when categories displayed.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "data": [
+        {
+            "id": 1,
+            "type": "categories",
+            "attributes": {
+                "slug": "category",
+                "name": "category",
+                "sort": 0,
+                "created_at": "1970-01-01 00:00:00",
+                "updated_at": "1970-01-01 00:00:00"
+            },
+            "relationships": {
+                "user": {
+                    "data": {
+                        "id": 1,
+                        "name": "saberLiou",
+                        "email": "saberliou@gmail.com",
+                        "email_verified_at": null,
+                        "created_at": "1970-01-01 00:00:00",
+                        "updated_at": "1970-01-01 00:00:00"
+                    }
+                },
+                "posts": []
+            }
+        }
+    ],
+    "links": {
+        "self": "http:\/\/kniflow.test\/api\/categories"
+    }
+}
+```
+<div id="execution-results-GETapi-categories" hidden>
+    <blockquote>Received response<span id="execution-response-status-GETapi-categories"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-categories"></code></pre>
+</div>
+<div id="execution-error-GETapi-categories" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-categories"></code></pre>
+</div>
+<form id="form-GETapi-categories" data-method="GET" data-path="api/categories" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories" onclick="tryItOut('GETapi-categories');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories" onclick="cancelTryOut('GETapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-green">GET</small>
+ <b><code>api/categories</code></b>
+</p>
+</form>
+
+
+## Store a newly created category in storage.
 
 <small class="badge badge-darkred">requires authentication</small>
 
@@ -205,7 +323,7 @@ The sort of the category.</p>
 </form>
 
 
-## 2-1. Display a listing of the categories.
+## Display the specified category.
 
 
 
@@ -214,7 +332,7 @@ The sort of the category.</p>
 
 ```bash
 curl -X GET \
-    -G "http://kniflow.test/api/categories" \
+    -G "http://kniflow.test/api/categories/eum" \
     -H "Accept: application/json"
 ```
 
@@ -222,7 +340,7 @@ curl -X GET \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories'
+url = 'http://kniflow.test/api/categories/eum'
 headers = {
   'Accept': 'application/json'
 }
@@ -235,7 +353,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://kniflow.test/api/categories',
+    'http://kniflow.test/api/categories/eum',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -248,125 +366,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories"
-);
-
-let headers = {
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200, when categories displayed.):
-
-```json
-{
-    "jsonapi": {
-        "version": "2021.02"
-    },
-    "data": [
-        {
-            "id": 1,
-            "type": "categories",
-            "attributes": {
-                "slug": "category",
-                "name": "category",
-                "sort": 0,
-                "created_at": "1970-01-01 00:00:00",
-                "updated_at": "1970-01-01 00:00:00"
-            },
-            "relationships": {
-                "user": {
-                    "data": {
-                        "id": 1,
-                        "name": "saberLiou",
-                        "email": "saberliou@gmail.com",
-                        "email_verified_at": null,
-                        "created_at": "1970-01-01 00:00:00",
-                        "updated_at": "1970-01-01 00:00:00"
-                    }
-                },
-                "posts": []
-            }
-        }
-    ],
-    "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
-    }
-}
-```
-<div id="execution-results-GETapi-categories" hidden>
-    <blockquote>Received response<span id="execution-response-status-GETapi-categories"></span>:</blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-categories"></code></pre>
-</div>
-<div id="execution-error-GETapi-categories" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-categories"></code></pre>
-</div>
-<form id="form-GETapi-categories" data-method="GET" data-path="api/categories" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories', this);">
-<h3>
-    Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories" onclick="tryItOut('GETapi-categories');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories" onclick="cancelTryOut('GETapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories" hidden>Send Request 💥</button>
-    </h3>
-<p>
-<small class="badge badge-green">GET</small>
- <b><code>api/categories</code></b>
-</p>
-</form>
-
-
-## 2-3. Display the specified category.
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
-    -G "http://kniflow.test/api/categories/aut" \
-    -H "Accept: application/json"
-```
-
-```python
-import requests
-import json
-
-url = 'http://kniflow.test/api/categories/aut'
-headers = {
-  'Accept': 'application/json'
-}
-
-response = requests.request('GET', url, headers=headers)
-response.json()
-```
-
-```php
-
-$client = new \GuzzleHttp\Client();
-$response = $client->get(
-    'http://kniflow.test/api/categories/aut',
-    [
-        'headers' => [
-            'Accept' => 'application/json',
-        ],
-    ]
-);
-$body = $response->getBody();
-print_r(json_decode((string) $body));
-```
-
-```javascript
-const url = new URL(
-    "http://kniflow.test/api/categories/aut"
+    "http://kniflow.test/api/categories/eum"
 );
 
 let headers = {
@@ -462,6 +462,260 @@ fetch(url, {
 <input type="text" name="category" data-endpoint="GETapi-categories--category-" data-component="url" required  hidden>
 <br>
 </p>
+</form>
+
+
+## Update the specified category in storage.
+
+<small class="badge badge-darkred">requires authentication</small>
+
+
+
+> Example request:
+
+```bash
+curl -X PUT \
+    "http://kniflow.test/api/categories/molestiae" \
+    -H "Authorization: Bearer {personal-access-token}" \
+    -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{"name":"saberLiou","sort":0}'
+
+```
+
+```python
+import requests
+import json
+
+url = 'http://kniflow.test/api/categories/molestiae'
+payload = {
+    "name": "saberLiou",
+    "sort": 0
+}
+headers = {
+  'Authorization': 'Bearer {personal-access-token}',
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()
+```
+
+```php
+
+$client = new \GuzzleHttp\Client();
+$response = $client->put(
+    'http://kniflow.test/api/categories/molestiae',
+    [
+        'headers' => [
+            'Authorization' => 'Bearer {personal-access-token}',
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ],
+        'json' => [
+            'name' => 'saberLiou',
+            'sort' => 0,
+        ],
+    ]
+);
+$body = $response->getBody();
+print_r(json_decode((string) $body));
+```
+
+```javascript
+const url = new URL(
+    "http://kniflow.test/api/categories/molestiae"
+);
+
+let headers = {
+    "Authorization": "Bearer {personal-access-token}",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+};
+
+let body = {
+    "name": "saberLiou",
+    "sort": 0
+}
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response => response.json());
+```
+
+
+> Example response (200, when category updated.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "data": {
+        "id": 1,
+        "type": "categories",
+        "attributes": {
+            "slug": "guo-xun-liu",
+            "name": "Guo-Xun Liu",
+            "sort": 1,
+            "created_at": "1970-01-01 00:00:02",
+            "updated_at": "1970-01-01 00:00:02"
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": 1,
+                    "name": "saberLiou",
+                    "email": "saberliou@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "1970-01-01 00:00:00",
+                    "updated_at": "1970-01-01 00:00:00"
+                }
+            },
+            "posts": []
+        }
+    },
+    "links": {
+        "self": "http:\/\/kniflow.test\/api\/categories"
+    }
+}
+```
+> Example response (401, without personal access token.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "401",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Unauthorized",
+            "detail": "Unauthenticated."
+        }
+    ]
+}
+```
+> Example response (403, when category updated by wrong user.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "403",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Forbidden",
+            "detail": "This action is unauthorized."
+        }
+    ]
+}
+```
+> Example response (404, when category not found.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "404",
+            "source": {
+                "pointer": "",
+                "parameter": ""
+            },
+            "title": "Not Found",
+            "detail": "Cannot find the resource."
+        }
+    ]
+}
+```
+> Example response (422, when any validation failed.):
+
+```json
+{
+    "jsonapi": {
+        "version": "2021.02"
+    },
+    "errors": [
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/name",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        },
+        {
+            "status": "422",
+            "source": {
+                "pointer": "\/data\/attributes\/sort",
+                "parameter": ""
+            },
+            "title": "Invalid Attribute",
+            "detail": "{validation-error-message}"
+        }
+    ]
+}
+```
+<div id="execution-results-PUTapi-categories--category-" hidden>
+    <blockquote>Received response<span id="execution-response-status-PUTapi-categories--category-"></span>:</blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-categories--category-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-categories--category-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-categories--category-"></code></pre>
+</div>
+<form id="form-PUTapi-categories--category-" data-method="PUT" data-path="api/categories/{category}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-categories--category-', this);">
+<h3>
+    Request&nbsp;&nbsp;&nbsp;
+        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-categories--category-" onclick="tryItOut('PUTapi-categories--category-');">Try it out ⚡</button>
+    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-categories--category-" onclick="cancelTryOut('PUTapi-categories--category-');" hidden>Cancel</button>&nbsp;&nbsp;
+    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-categories--category-" hidden>Send Request 💥</button>
+    </h3>
+<p>
+<small class="badge badge-darkblue">PUT</small>
+ <b><code>api/categories/{category}</code></b>
+</p>
+<p>
+<small class="badge badge-purple">PATCH</small>
+ <b><code>api/categories/{category}</code></b>
+</p>
+<p>
+<label id="auth-PUTapi-categories--category-" hidden>Authorization header: <b><code>Bearer </code></b><input type="text" name="Authorization" data-prefix="Bearer " data-endpoint="PUTapi-categories--category-" data-component="header"></label>
+</p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p>
+<b><code>category</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="category" data-endpoint="PUTapi-categories--category-" data-component="url" required  hidden>
+<br>
+</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p>
+<b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+<input type="text" name="name" data-endpoint="PUTapi-categories--category-" data-component="body"  hidden>
+<br>
+The name of the category.</p>
+<p>
+<b><code>sort</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+<input type="number" name="sort" data-endpoint="PUTapi-categories--category-" data-component="body"  hidden>
+<br>
+The sort of the category.</p>
+
 </form>
 
 

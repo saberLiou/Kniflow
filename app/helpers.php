@@ -65,7 +65,7 @@ if (!function_exists('format_error_objects')) {
      * Format error objects in an error json response,
      * reference: https://jsonapi.org/examples/#error-objects
      *
-     * @param integer $status
+     * @param int $status
      * @param array $errors
      * @return array
      */
@@ -90,7 +90,7 @@ if (!function_exists('format_error_object')) {
      * Format an error object in an error json response,
      * reference: https://jsonapi.org/format/#error-objects.
      *
-     * @param integer $status
+     * @param int $status
      * @param string $title
      * @param string $detail
      * @param string $pointer

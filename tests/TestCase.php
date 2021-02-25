@@ -70,7 +70,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Return an error message by the status code of an HTTP response.
      *
-     * @param integer $status
+     * @param int $status
      * @return array
      */
     protected function errorMessage(int $status)
@@ -78,6 +78,9 @@ abstract class TestCase extends BaseTestCase
         switch ($status) {
             case Response::HTTP_UNAUTHORIZED:
                 $message = "Unauthenticated.";
+                break;
+            case Response::HTTP_FORBIDDEN:
+                $message = "This action is unauthorized.";
                 break;
             case Response::HTTP_NOT_FOUND:
                 $message = "Cannot find the resource.";

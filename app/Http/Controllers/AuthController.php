@@ -32,10 +32,12 @@ class AuthController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
+
+        $this->middleware('auth:sanctum', ['only' => ['logout']]);
     }
 
     /**
-     * 1-1. Register a user with a personal access token for the device.
+     * Register a user with a personal access token for the device.
      *
      * @group 01. Authentication
      * @unauthenticated
@@ -55,7 +57,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 1-2. Login a user with a new personal access token for the device.
+     * Login a user with a new personal access token for the device.
      *
      * @group 01. Authentication
      * @unauthenticated
@@ -74,7 +76,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 1-3. Logout a user with all the personal access tokens being revoked on the device.
+     * Logout a user with all the personal access tokens being revoked on the device.
      *
      * @group 01. Authentication
      * @responseFile status=200 scenario="when logout succeeded." responses/auth.logout/200.json

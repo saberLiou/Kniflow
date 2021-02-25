@@ -31,7 +31,7 @@ class CategoryRepository extends BaseRepository
     }
 
     /**
-     * Create a category by the authenticated user into the database,
+     * Create a category instance by the authenticated user into the database,
      * and return the created user instance with original attributes.
      *
      * @param User $authUser
@@ -62,5 +62,17 @@ class CategoryRepository extends BaseRepository
     public function getCategories()
     {
         return Category::all();
+    }
+
+    /**
+     * Update the category instance in the database.
+     *
+     * @param Category $category
+     * @param array $data
+     * @return void
+     */
+    public function updateCategory(Category $category, array $data)
+    {
+        $category->update($data);
     }
 }

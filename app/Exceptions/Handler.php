@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -61,6 +62,11 @@ class Handler extends ExceptionHandler
                     return error_response(
                         [Response::$statusTexts[Response::HTTP_UNAUTHORIZED] => $e->getMessage()],
                         Response::HTTP_UNAUTHORIZED
+                    );
+                case AuthorizationException::class:
+                    return error_response(
+                        [Response::$statusTexts[Response::HTTP_FORBIDDEN] => $e->getMessage()],
+                        Response::HTTP_FORBIDDEN
                     );
                 case ModelNotFoundException::class:
                     return error_response(

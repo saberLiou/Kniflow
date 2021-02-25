@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\Category;
 use App\Repositories\CategoryRepository;
 
 /**
@@ -44,12 +45,24 @@ class CategoryService
      *
      * @param User $authUser
      * @param array $data
-     * @return \App\Models\Category
+     * @return Category
      */
     public function createCategory(User $authUser, array $data)
     {
         return $this->categoryRepository->refreshCategory(
             $this->categoryRepository->createCategory($authUser, $data)
         );
+    }
+
+    /**
+     * Update the specified category in storage.
+     *
+     * @param Category $category
+     * @param array $data
+     * @return void
+     */
+    public function updateCategory(Category $category, array $data)
+    {
+        $this->categoryRepository->updateCategory($category, $data);
     }
 }

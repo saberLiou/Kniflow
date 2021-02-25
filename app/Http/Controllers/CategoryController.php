@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\Categories\StoreRequest;
+use App\Http\Requests\Categories\UpdateRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -32,12 +33,15 @@ class CategoryController extends Controller
      */
     public function __construct(CategoryService $categoryService)
     {
-        $this->authorizeResource(Category::class, 'category', ['except' => ['index', 'show']]);
         $this->categoryService = $categoryService;
+
+        $routesWithoutAuth = ['except' => ['index', 'show']];
+        $this->middleware('auth:sanctum', $routesWithoutAuth);
+        $this->authorizeResource(Category::class, 'category', $routesWithoutAuth);
     }
 
     /**
-     * 2-1. Display a listing of the categories.
+     * Display a listing of the categories.
      *
      * @group 02. Categories
      * @unauthenticated
@@ -51,7 +55,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * 2-2. Store a newly created category in storage.
+     * Store a newly created category in storage.
      *
      * @group 02. Categories
      * @responseFile status=201 scenario="when category created." responses/categories.store/201.json
@@ -70,14 +74,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * 2-3. Display the specified category.
+     * Display the specified category.
      *
      * @group 02. Categories
      * @unauthenticated
      * @responseFile status=200 scenario="when category displayed." responses/categories.show/200.json
      * @responseFile status=404 scenario="when category not found." responses/404_model.json
      *
-     * @param  \App\Models\Category  $category
+     * @param  Category  $category
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Category $category)
@@ -86,23 +90,22 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @group 02. Categories
+     * @responseFile status=200 scenario="when category updated." responses/categories.update/200.json
+     * @responseFile status=401 scenario="without personal access token." responses/401.json
+     * @responseFile status=403 scenario="when category updated by wrong user." responses/403.json
+     * @responseFile status=404 scenario="when category not found." responses/404_model.json
+     * @responseFile status=422 scenario="when any validation failed." responses/categories.update/422.json
+     *
+     * @param  UpdateRequest  $request
+     * @param  Category  $category
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateRequest $request, Category $category)
     {
-        $validator = Validator::make($request->all(), [
-            Category::NAME => 'string|max:255',
-            Category::SORT => 'integer',
-        ]);
-        if ($validator->fails()) {
-            return error_response($validator->errors()->toArray(), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
-        $category->update($request->merge([
+        $this->categoryService->updateCategory($category, $request->merge([
             Category::SORT => (int) $request->sort,
         ])->only([
             Category::NAME,

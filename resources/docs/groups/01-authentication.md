@@ -1,7 +1,7 @@
 # 01. Authentication
 
 
-## 1-1. Register a user with a personal access token for the device.
+## Register a user with a personal access token for the device.
 
 
 
@@ -219,7 +219,7 @@ The device name of the user.</p>
 </form>
 
 
-## 1-2. Login a user with a new personal access token for the device.
+## Login a user with a new personal access token for the device.
 
 
 
@@ -420,7 +420,7 @@ The device name of the user.</p>
 </form>
 
 
-## 1-3. Logout a user with all the personal access tokens being revoked on the device.
+## Logout a user with all the personal access tokens being revoked on the device.
 
 <small class="badge badge-darkred">requires authentication</small>
 

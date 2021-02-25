@@ -37,11 +37,14 @@ class ShowTest extends TestCase
 
         $this->seed(UserSeeder::class);
 
-        $this->category = Category::factory()->create([
-            Category::USER_ID => User::first()->id,
+        $this->category = User::first()->categories()->create([
             Category::NAME => config('scribe.example_values.name'),
             Category::SORT => 1,
         ])->refresh();
+
+        $this->url = route('categories.show', [
+            'category' => $this->category->slug,
+        ]);
     }
 
     public function testWhenCategoryDisplayed()
@@ -49,10 +52,6 @@ class ShowTest extends TestCase
         $this->withoutExceptionHandling();
 
         // GIVEN
-        $this->url = route('categories.show', [
-            'category' => $this->category->slug,
-        ]);
-
         $expected = [
             'data' => format_resource_object($this->category->id, Category::TABLE, [
                 Category::SLUG => $this->category->slug,

@@ -14,6 +14,15 @@ use Symfony\Component\HttpFoundation\Response;
 class PostController extends Controller
 {
     /**
+     * Create a PostController instance.
+     */
+    public function __construct()
+    {
+        $routesWithoutAuth = ['except' => ['index', 'show']];
+        $this->middleware('auth:sanctum', $routesWithoutAuth);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -58,7 +67,7 @@ class PostController extends Controller
     {
         $validator = Validator::make($request->all(), [
             Post::USER_ID => 'required|integer',
-            Post::CATEGORY_ID => 'nullable|integer|exists:'.Category::TABLE.',id',
+            Post::CATEGORY_ID => 'nullable|integer|exists:' . Category::TABLE . ',id',
             Post::TITLE => 'required|string|max:255',
             Post::CONTENT => 'required',
             Post::STATUS => 'integer',
@@ -102,7 +111,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
-            Post::CATEGORY_ID => 'nullable|integer|exists:'.Category::TABLE.',id',
+            Post::CATEGORY_ID => 'nullable|integer|exists:' . Category::TABLE . ',id',
             Post::TITLE => 'string|max:255',
             Post::STATUS => 'integer',
             Post::PUBLISHED_AT => 'date',

@@ -29,6 +29,6 @@
         }
     ],
     "links": {
-        "self": "http://kniflow.test/api/categories"
+        "self": "http://kniflow.herokuapp.com/api/categories"
     }
 }

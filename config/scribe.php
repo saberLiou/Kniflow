@@ -248,7 +248,7 @@ INTRO
     /*
      * The base URL to be used in examples. If this is empty, Scribe will use the value of config('app.url').
      */
-    'base_url' => null,
+    'base_url' => 'http://kniflow.herokuapp.com/',
 
     /*
      * Generate a Postman collection (v2.1.0) in addition to HTML docs.

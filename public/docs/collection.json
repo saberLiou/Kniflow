@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "kniflow.test"
+            "value": "kniflow.herokuapp.com"
         }
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "b7f28bc2-4c4a-4a6f-8142-477a6b9948e3",
+        "_postman_id": "41eec97e-066e-49bc-a781-44f5a17f00cd",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -186,7 +186,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "error",
+                                    "value": "rerum",
                                     "description": ""
                                 }
                             ]
@@ -219,7 +219,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "architecto",
+                                    "value": "enim",
                                     "description": ""
                                 }
                             ]
@@ -256,7 +256,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "aperiam",
+                                    "value": "laudantium",
                                     "description": ""
                                 }
                             ]

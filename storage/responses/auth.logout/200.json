@@ -19,6 +19,6 @@
         }
     },
     "links": {
-        "self": "http://kniflow.test/api/logout"
+        "self": "http://kniflow.herokuapp.com/api/logout"
     }
 }

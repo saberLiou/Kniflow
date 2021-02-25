@@ -10,7 +10,7 @@
 
 ```bash
 curl -X GET \
-    -G "http://kniflow.test/api/categories" \
+    -G "http://kniflow.herokuapp.com/api/categories" \
     -H "Accept: application/json"
 ```
 
@@ -18,7 +18,7 @@ curl -X GET \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories'
+url = 'http://kniflow.herokuapp.com/api/categories'
 headers = {
   'Accept': 'application/json'
 }
@@ -31,7 +31,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://kniflow.test/api/categories',
+    'http://kniflow.herokuapp.com/api/categories',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -44,7 +44,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories"
+    "http://kniflow.herokuapp.com/api/categories"
 );
 
 let headers = {
@@ -93,7 +93,7 @@ fetch(url, {
         }
     ],
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories"
     }
 }
 ```
@@ -126,7 +126,7 @@ fetch(url, {
 
 ```bash
 curl -X POST \
-    "http://kniflow.test/api/categories" \
+    "http://kniflow.herokuapp.com/api/categories" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -138,7 +138,7 @@ curl -X POST \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories'
+url = 'http://kniflow.herokuapp.com/api/categories'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -157,7 +157,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->post(
-    'http://kniflow.test/api/categories',
+    'http://kniflow.herokuapp.com/api/categories',
     [
         'headers' => [
             'Authorization' => 'Bearer {personal-access-token}',
@@ -176,7 +176,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories"
+    "http://kniflow.herokuapp.com/api/categories"
 );
 
 let headers = {
@@ -230,7 +230,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories"
     }
 }
 ```
@@ -326,7 +326,7 @@ The sort of the category.</p>
 
 ```bash
 curl -X GET \
-    -G "http://kniflow.test/api/categories/error" \
+    -G "http://kniflow.herokuapp.com/api/categories/rerum" \
     -H "Accept: application/json"
 ```
 
@@ -334,7 +334,7 @@ curl -X GET \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories/error'
+url = 'http://kniflow.herokuapp.com/api/categories/rerum'
 headers = {
   'Accept': 'application/json'
 }
@@ -347,7 +347,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->get(
-    'http://kniflow.test/api/categories/error',
+    'http://kniflow.herokuapp.com/api/categories/rerum',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -360,7 +360,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories/error"
+    "http://kniflow.herokuapp.com/api/categories/rerum"
 );
 
 let headers = {
@@ -407,7 +407,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/saberliou"
     }
 }
 ```
@@ -466,7 +466,7 @@ fetch(url, {
 
 ```bash
 curl -X PUT \
-    "http://kniflow.test/api/categories/architecto" \
+    "http://kniflow.herokuapp.com/api/categories/enim" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -478,7 +478,7 @@ curl -X PUT \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories/architecto'
+url = 'http://kniflow.herokuapp.com/api/categories/enim'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -497,7 +497,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->put(
-    'http://kniflow.test/api/categories/architecto',
+    'http://kniflow.herokuapp.com/api/categories/enim',
     [
         'headers' => [
             'Authorization' => 'Bearer {personal-access-token}',
@@ -516,7 +516,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories/architecto"
+    "http://kniflow.herokuapp.com/api/categories/enim"
 );
 
 let headers = {
@@ -570,7 +570,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/saberliou"
     }
 }
 ```
@@ -717,7 +717,7 @@ The sort of the category.</p>
 
 ```bash
 curl -X DELETE \
-    "http://kniflow.test/api/categories/aperiam" \
+    "http://kniflow.herokuapp.com/api/categories/laudantium" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json"
 ```
@@ -726,7 +726,7 @@ curl -X DELETE \
 import requests
 import json
 
-url = 'http://kniflow.test/api/categories/aperiam'
+url = 'http://kniflow.herokuapp.com/api/categories/laudantium'
 headers = {
   'Authorization': 'Bearer {personal-access-token}',
   'Accept': 'application/json'
@@ -740,7 +740,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->delete(
-    'http://kniflow.test/api/categories/aperiam',
+    'http://kniflow.herokuapp.com/api/categories/laudantium',
     [
         'headers' => [
             'Authorization' => 'Bearer {personal-access-token}',
@@ -754,7 +754,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/categories/aperiam"
+    "http://kniflow.herokuapp.com/api/categories/laudantium"
 );
 
 let headers = {
@@ -802,7 +802,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/guo-xun-liu"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/guo-xun-liu"
     }
 }
 ```

@@ -27,6 +27,6 @@
         }
     },
     "links": {
-        "self": "http://kniflow.test/api/categories/saberliou"
+        "self": "http://kniflow.herokuapp.com/api/categories/saberliou"
     }
 }

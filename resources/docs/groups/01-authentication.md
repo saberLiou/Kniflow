@@ -10,7 +10,7 @@
 
 ```bash
 curl -X POST \
-    "http://kniflow.test/api/register" \
+    "http://kniflow.herokuapp.com/api/register" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
     -d '{"name":"saberLiou","email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
@@ -21,7 +21,7 @@ curl -X POST \
 import requests
 import json
 
-url = 'http://kniflow.test/api/register'
+url = 'http://kniflow.herokuapp.com/api/register'
 payload = {
     "name": "saberLiou",
     "email": "saberliou@gmail.com",
@@ -41,7 +41,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->post(
-    'http://kniflow.test/api/register',
+    'http://kniflow.herokuapp.com/api/register',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -61,7 +61,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/register"
+    "http://kniflow.herokuapp.com/api/register"
 );
 
 let headers = {
@@ -124,7 +124,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/register"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/register"
     }
 }
 ```
@@ -225,7 +225,7 @@ The device name of the user.</p>
 
 ```bash
 curl -X POST \
-    "http://kniflow.test/api/login" \
+    "http://kniflow.herokuapp.com/api/login" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
     -d '{"email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
@@ -236,7 +236,7 @@ curl -X POST \
 import requests
 import json
 
-url = 'http://kniflow.test/api/login'
+url = 'http://kniflow.herokuapp.com/api/login'
 payload = {
     "email": "saberliou@gmail.com",
     "password": "12345678",
@@ -255,7 +255,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->post(
-    'http://kniflow.test/api/login',
+    'http://kniflow.herokuapp.com/api/login',
     [
         'headers' => [
             'Accept' => 'application/json',
@@ -274,7 +274,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/login"
+    "http://kniflow.herokuapp.com/api/login"
 );
 
 let headers = {
@@ -336,7 +336,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/login"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/login"
     }
 }
 ```
@@ -424,7 +424,7 @@ The device name of the user.</p>
 
 ```bash
 curl -X POST \
-    "http://kniflow.test/api/logout" \
+    "http://kniflow.herokuapp.com/api/logout" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -436,7 +436,7 @@ curl -X POST \
 import requests
 import json
 
-url = 'http://kniflow.test/api/logout'
+url = 'http://kniflow.herokuapp.com/api/logout'
 payload = {
     "device_name": "saberLiou's Pixel"
 }
@@ -454,7 +454,7 @@ response.json()
 
 $client = new \GuzzleHttp\Client();
 $response = $client->post(
-    'http://kniflow.test/api/logout',
+    'http://kniflow.herokuapp.com/api/logout',
     [
         'headers' => [
             'Authorization' => 'Bearer {personal-access-token}',
@@ -472,7 +472,7 @@ print_r(json_decode((string) $body));
 
 ```javascript
 const url = new URL(
-    "http://kniflow.test/api/logout"
+    "http://kniflow.herokuapp.com/api/logout"
 );
 
 let headers = {
@@ -517,7 +517,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/logout"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/logout"
     }
 }
 ```

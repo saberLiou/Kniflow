@@ -5,7 +5,7 @@ info:
     version: '2021.02'
 servers:
     -
-        url: 'http://kniflow.test'
+        url: 'http://kniflow.herokuapp.com'
 paths:
     /api/register:
         post:
@@ -36,11 +36,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/register' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/register' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 1, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }] }, categories: [], posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/register' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/register' } }
                 422:
                     description: '422, when any validation failed.'
                     content:
@@ -113,11 +113,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/login' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/login' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00', token: '{personal-access-token}' }, relationships: { tokens: { data: [{ id: 2, tokenable_type: users, tokenable_id: 1, name: 'saberLiou''s Pixel', abilities: ['*'], last_used_at: null, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }] }, categories: [], posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/login' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/login' } }
                 422:
                     description: '422, when any validation failed.'
                     content:
@@ -192,11 +192,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { tokens: [], categories: [], posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/logout' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/logout' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: users, attributes: { name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { tokens: [], categories: [], posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/logout' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/logout' } }
                 401:
                     description: '401, without personal access token.'
                     content:
@@ -258,11 +258,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }]
-                                    links: { self: 'http://kniflow.test/api/categories' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/categories' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: array, example: [{ id: 1, type: categories, attributes: { slug: category, name: category, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }], items: { type: object } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/categories' } }
             tags:
                 - '02. Categories'
             security: []
@@ -301,11 +301,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/categories' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/categories' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:01' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/categories' } }
                 401:
                     description: '401, without personal access token.'
                     content:
@@ -371,11 +371,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/categories/saberliou' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/categories/saberliou' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: categories, attributes: { slug: saberliou, name: saberLiou, sort: 0, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories/saberliou' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/categories/saberliou' } }
                 404:
                     description: '404, when category not found.'
                     content:
@@ -426,11 +426,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: categories, attributes: { slug: guo-xun-liu, name: 'Guo-Xun Liu', sort: 1, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:02' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/categories/saberliou' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/categories/saberliou' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: categories, attributes: { slug: guo-xun-liu, name: 'Guo-Xun Liu', sort: 1, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:02' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories/saberliou' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/categories/saberliou' } }
                 401:
                     description: '401, without personal access token.'
                     content:
@@ -524,11 +524,11 @@ paths:
                                 example:
                                     jsonapi: { version: '2021.02' }
                                     data: { id: 1, type: categories, attributes: { slug: guo-xun-liu, name: 'Guo-Xun Liu', sort: 1, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:02' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } }
-                                    links: { self: 'http://kniflow.test/api/categories/guo-xun-liu' }
+                                    links: { self: 'http://kniflow.herokuapp.com/api/categories/guo-xun-liu' }
                                 properties:
                                     jsonapi: { type: object, example: { version: '2021.02' } }
                                     data: { type: object, example: { id: 1, type: categories, attributes: { slug: guo-xun-liu, name: 'Guo-Xun Liu', sort: 1, created_at: '1970-01-01 00:00:01', updated_at: '1970-01-01 00:00:02' }, relationships: { user: { data: { id: 1, name: saberLiou, email: saberliou@gmail.com, email_verified_at: null, created_at: '1970-01-01 00:00:00', updated_at: '1970-01-01 00:00:00' } }, posts: [] } } }
-                                    links: { type: object, example: { self: 'http://kniflow.test/api/categories/guo-xun-liu' } }
+                                    links: { type: object, example: { self: 'http://kniflow.herokuapp.com/api/categories/guo-xun-liu' } }
                 401:
                     description: '401, without personal access token.'
                     content:
@@ -572,7 +572,7 @@ paths:
                 in: path
                 name: category
                 description: ''
-                example: error
+                example: rerum
                 required: true
                 schema:
                     type: string

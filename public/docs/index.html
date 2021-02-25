@@ -61,8 +61,8 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://kniflow.test</code></pre><h1>Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
+<pre><code class="language-yaml">http://kniflow.herokuapp.com/</code></pre><h1>Authenticating requests</h1>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {personal-access-token}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p><h1>01. Authentication</h1>
 <h2>Register a user with a personal access token for the device.</h2>
@@ -70,7 +70,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://kniflow.test/api/register" \
+    "http://kniflow.herokuapp.com/api/register" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
     -d '{"name":"saberLiou","email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
@@ -78,7 +78,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/register'
+url = 'http://kniflow.herokuapp.com/api/register'
 payload = {
     "name": "saberLiou",
     "email": "saberliou@gmail.com",
@@ -95,7 +95,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://kniflow.test/api/register',
+    'http://kniflow.herokuapp.com/api/register',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -112,7 +112,7 @@ $response = $client-&gt;post(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/register"
+    "http://kniflow.herokuapp.com/api/register"
 );
 
 let headers = {
@@ -172,7 +172,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/register"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/register"
     }
 }</code></pre>
 <blockquote>
@@ -265,7 +265,7 @@ The device name of the user.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://kniflow.test/api/login" \
+    "http://kniflow.herokuapp.com/api/login" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
     -d '{"email":"saberliou@gmail.com","password":"12345678","device_name":"saberLiou's Pixel"}'
@@ -273,7 +273,7 @@ The device name of the user.</p>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/login'
+url = 'http://kniflow.herokuapp.com/api/login'
 payload = {
     "email": "saberliou@gmail.com",
     "password": "12345678",
@@ -289,7 +289,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://kniflow.test/api/login',
+    'http://kniflow.herokuapp.com/api/login',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -305,7 +305,7 @@ $response = $client-&gt;post(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/login"
+    "http://kniflow.herokuapp.com/api/login"
 );
 
 let headers = {
@@ -364,7 +364,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/login"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/login"
     }
 }</code></pre>
 <blockquote>
@@ -444,7 +444,7 @@ The device name of the user.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://kniflow.test/api/logout" \
+    "http://kniflow.herokuapp.com/api/logout" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -453,7 +453,7 @@ The device name of the user.</p>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/logout'
+url = 'http://kniflow.herokuapp.com/api/logout'
 payload = {
     "device_name": "saberLiou's Pixel"
 }
@@ -468,7 +468,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://kniflow.test/api/logout',
+    'http://kniflow.herokuapp.com/api/logout',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -483,7 +483,7 @@ $response = $client-&gt;post(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/logout"
+    "http://kniflow.herokuapp.com/api/logout"
 );
 
 let headers = {
@@ -525,7 +525,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/logout"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/logout"
     }
 }</code></pre>
 <blockquote>
@@ -598,12 +598,12 @@ The device name of the user.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://kniflow.test/api/categories" \
+    -G "http://kniflow.herokuapp.com/api/categories" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories'
+url = 'http://kniflow.herokuapp.com/api/categories'
 headers = {
   'Accept': 'application/json'
 }
@@ -613,7 +613,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://kniflow.test/api/categories',
+    'http://kniflow.herokuapp.com/api/categories',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -623,7 +623,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories"
+    "http://kniflow.herokuapp.com/api/categories"
 );
 
 let headers = {
@@ -668,7 +668,7 @@ fetch(url, {
         }
     ],
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories"
     }
 }</code></pre>
 <div id="execution-results-GETapi-categories" hidden>
@@ -694,7 +694,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://kniflow.test/api/categories" \
+    "http://kniflow.herokuapp.com/api/categories" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -703,7 +703,7 @@ fetch(url, {
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories'
+url = 'http://kniflow.herokuapp.com/api/categories'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -719,7 +719,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://kniflow.test/api/categories',
+    'http://kniflow.herokuapp.com/api/categories',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -735,7 +735,7 @@ $response = $client-&gt;post(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories"
+    "http://kniflow.herokuapp.com/api/categories"
 );
 
 let headers = {
@@ -786,7 +786,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories"
     }
 }</code></pre>
 <blockquote>
@@ -873,12 +873,12 @@ The sort of the category.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://kniflow.test/api/categories/error" \
+    -G "http://kniflow.herokuapp.com/api/categories/rerum" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/error'
+url = 'http://kniflow.herokuapp.com/api/categories/rerum'
 headers = {
   'Accept': 'application/json'
 }
@@ -888,7 +888,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://kniflow.test/api/categories/error',
+    'http://kniflow.herokuapp.com/api/categories/rerum',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -898,7 +898,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/error"
+    "http://kniflow.herokuapp.com/api/categories/rerum"
 );
 
 let headers = {
@@ -941,7 +941,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/saberliou"
     }
 }</code></pre>
 <blockquote>
@@ -992,7 +992,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://kniflow.test/api/categories/architecto" \
+    "http://kniflow.herokuapp.com/api/categories/enim" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -1001,7 +1001,7 @@ fetch(url, {
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/architecto'
+url = 'http://kniflow.herokuapp.com/api/categories/enim'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -1017,7 +1017,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://kniflow.test/api/categories/architecto',
+    'http://kniflow.herokuapp.com/api/categories/enim',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -1033,7 +1033,7 @@ $response = $client-&gt;put(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/architecto"
+    "http://kniflow.herokuapp.com/api/categories/enim"
 );
 
 let headers = {
@@ -1084,7 +1084,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/saberliou"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/saberliou"
     }
 }</code></pre>
 <blockquote>
@@ -1220,13 +1220,13 @@ The sort of the category.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://kniflow.test/api/categories/aperiam" \
+    "http://kniflow.herokuapp.com/api/categories/laudantium" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/aperiam'
+url = 'http://kniflow.herokuapp.com/api/categories/laudantium'
 headers = {
   'Authorization': 'Bearer {personal-access-token}',
   'Accept': 'application/json'
@@ -1237,7 +1237,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://kniflow.test/api/categories/aperiam',
+    'http://kniflow.herokuapp.com/api/categories/laudantium',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -1248,7 +1248,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/aperiam"
+    "http://kniflow.herokuapp.com/api/categories/laudantium"
 );
 
 let headers = {
@@ -1292,7 +1292,7 @@ fetch(url, {
         }
     },
     "links": {
-        "self": "http:\/\/kniflow.test\/api\/categories\/guo-xun-liu"
+        "self": "http:\/\/kniflow.herokuapp.com\/api\/categories\/guo-xun-liu"
     }
 }</code></pre>
 <blockquote>

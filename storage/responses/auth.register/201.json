@@ -35,6 +35,6 @@
         }
     },
     "links": {
-        "self": "http://kniflow.test/api/register"
+        "self": "http://kniflow.herokuapp.com/api/register"
     }
 }

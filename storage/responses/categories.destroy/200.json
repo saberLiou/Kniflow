@@ -27,6 +27,6 @@
         }
     },
     "links": {
-        "self": "http://kniflow.test/api/categories/guo-xun-liu"
+        "self": "http://kniflow.herokuapp.com/api/categories/guo-xun-liu"
     }
 }

@@ -58,11 +58,6 @@
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-<script>
-    var baseUrl = "http://kniflow.test";
-</script>
-<script src="js/tryitout-2.4.2.js"></script>
 <blockquote>
 <p>Base URL</p>
 </blockquote>
@@ -237,9 +232,6 @@ fetch(url, {
 <form id="form-POSTapi-register" data-method="POST" data-path="api/register" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-register', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-register" onclick="tryItOut('POSTapi-register');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-register" onclick="cancelTryOut('POSTapi-register');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-register" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -423,9 +415,6 @@ fetch(url, {
 <form id="form-POSTapi-login" data-method="POST" data-path="api/login" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-login" onclick="tryItOut('POSTapi-login');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-login" onclick="cancelTryOut('POSTapi-login');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-login" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -588,9 +577,6 @@ fetch(url, {
 <form id="form-POSTapi-logout" data-method="POST" data-path="api/logout" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-logout', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-logout" onclick="tryItOut('POSTapi-logout');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-logout" onclick="cancelTryOut('POSTapi-logout');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-logout" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -696,9 +682,6 @@ fetch(url, {
 <form id="form-GETapi-categories" data-method="GET" data-path="api/categories" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories" onclick="tryItOut('GETapi-categories');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories" onclick="cancelTryOut('GETapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -864,9 +847,6 @@ fetch(url, {
 <form id="form-POSTapi-categories" data-method="POST" data-path="api/categories" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('POSTapi-categories', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-POSTapi-categories" onclick="tryItOut('POSTapi-categories');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-POSTapi-categories" onclick="cancelTryOut('POSTapi-categories');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-POSTapi-categories" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-black">POST</small>
@@ -893,12 +873,12 @@ The sort of the category.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://kniflow.test/api/categories/qui" \
+    -G "http://kniflow.test/api/categories/error" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/qui'
+url = 'http://kniflow.test/api/categories/error'
 headers = {
   'Accept': 'application/json'
 }
@@ -908,7 +888,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://kniflow.test/api/categories/qui',
+    'http://kniflow.test/api/categories/error',
     [
         'headers' =&gt; [
             'Accept' =&gt; 'application/json',
@@ -918,7 +898,7 @@ $response = $client-&gt;get(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/qui"
+    "http://kniflow.test/api/categories/error"
 );
 
 let headers = {
@@ -994,9 +974,6 @@ fetch(url, {
 <form id="form-GETapi-categories--category-" data-method="GET" data-path="api/categories/{category}" data-authed="0" data-hasfiles="0" data-headers='{"Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('GETapi-categories--category-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-GETapi-categories--category-" onclick="tryItOut('GETapi-categories--category-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-GETapi-categories--category-" onclick="cancelTryOut('GETapi-categories--category-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-GETapi-categories--category-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-green">GET</small>
@@ -1015,7 +992,7 @@ fetch(url, {
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://kniflow.test/api/categories/rem" \
+    "http://kniflow.test/api/categories/architecto" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -1024,7 +1001,7 @@ fetch(url, {
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/rem'
+url = 'http://kniflow.test/api/categories/architecto'
 payload = {
     "name": "saberLiou",
     "sort": 0
@@ -1040,7 +1017,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://kniflow.test/api/categories/rem',
+    'http://kniflow.test/api/categories/architecto',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -1056,7 +1033,7 @@ $response = $client-&gt;put(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/rem"
+    "http://kniflow.test/api/categories/architecto"
 );
 
 let headers = {
@@ -1206,9 +1183,6 @@ fetch(url, {
 <form id="form-PUTapi-categories--category-" data-method="PUT" data-path="api/categories/{category}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json","Content-Type":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('PUTapi-categories--category-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-PUTapi-categories--category-" onclick="tryItOut('PUTapi-categories--category-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-PUTapi-categories--category-" onclick="cancelTryOut('PUTapi-categories--category-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-PUTapi-categories--category-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-darkblue">PUT</small>
@@ -1246,13 +1220,13 @@ The sort of the category.</p>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://kniflow.test/api/categories/ea" \
+    "http://kniflow.test/api/categories/aperiam" \
     -H "Authorization: Bearer {personal-access-token}" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://kniflow.test/api/categories/ea'
+url = 'http://kniflow.test/api/categories/aperiam'
 headers = {
   'Authorization': 'Bearer {personal-access-token}',
   'Accept': 'application/json'
@@ -1263,7 +1237,7 @@ response.json()</code></pre>
 <pre><code class="language-php">
 $client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://kniflow.test/api/categories/ea',
+    'http://kniflow.test/api/categories/aperiam',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {personal-access-token}',
@@ -1274,7 +1248,7 @@ $response = $client-&gt;delete(
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-javascript">const url = new URL(
-    "http://kniflow.test/api/categories/ea"
+    "http://kniflow.test/api/categories/aperiam"
 );
 
 let headers = {
@@ -1389,9 +1363,6 @@ fetch(url, {
 <form id="form-DELETEapi-categories--category-" data-method="DELETE" data-path="api/categories/{category}" data-authed="1" data-hasfiles="0" data-headers='{"Authorization":"Bearer {personal-access-token}","Accept":"application\/json"}' onsubmit="event.preventDefault(); executeTryOut('DELETEapi-categories--category-', this);">
 <h3>
     Request&nbsp;&nbsp;&nbsp;
-        <button type="button" style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-tryout-DELETEapi-categories--category-" onclick="tryItOut('DELETEapi-categories--category-');">Try it out ⚡</button>
-    <button type="button" style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-canceltryout-DELETEapi-categories--category-" onclick="cancelTryOut('DELETEapi-categories--category-');" hidden>Cancel</button>&nbsp;&nbsp;
-    <button type="submit" style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;" id="btn-executetryout-DELETEapi-categories--category-" hidden>Send Request 💥</button>
     </h3>
 <p>
 <small class="badge badge-red">DELETE</small>

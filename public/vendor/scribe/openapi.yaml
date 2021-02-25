@@ -572,7 +572,7 @@ paths:
                 in: path
                 name: category
                 description: ''
-                example: error
+                example: qui
                 required: true
                 schema:
                     type: string

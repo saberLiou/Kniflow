@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Kniflow API Documentation",
-        "_postman_id": "b7f28bc2-4c4a-4a6f-8142-477a6b9948e3",
+        "_postman_id": "ab391e4d-1c6f-4ae7-8da0-20c58bbe60c8",
         "description": "A RESTful API backend of a simple blog.",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "2021.02"
@@ -186,7 +186,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "error",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -219,7 +219,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "architecto",
+                                    "value": "rem",
                                     "description": ""
                                 }
                             ]
@@ -256,7 +256,7 @@
                                 {
                                     "id": "category",
                                     "key": "category",
-                                    "value": "aperiam",
+                                    "value": "ea",
                                     "description": ""
                                 }
                             ]

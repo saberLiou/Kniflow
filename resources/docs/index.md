@@ -32,11 +32,6 @@ This documentation aims to provide all the information you need to work with our
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
-<script>
-    var baseUrl = "http://kniflow.test";
-</script>
-<script src="js/tryitout-2.4.2.js"></script>
 
 > Base URL
 
